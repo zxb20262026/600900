@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CJDL 日监控 · 2026-05-28 · 早报 ☀️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC",sans-serif;background:#0a0e17;color:#e6edf3;line-height:1.5;padding:16px;min-height:100vh}
+.wrap{max-width:900px;margin:0 auto}
+
+/* ── 头部 ── */
+.header{background:linear-gradient(135deg,#0a1628 0%,#0f3460 40%,#16213e 70%,#0a0e17 100%);border:1px solid #1e3a5f;border-radius:16px;padding:28px 20px 20px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 30%,rgba(63,185,80,0.08) 0%,transparent 50%),radial-gradient(circle at 70% 70%,rgba(88,166,255,0.06) 0%,transparent 50%);animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:0.6}50%{opacity:1}}
+.header h1{font-size:1.6em;font-weight:700;position:relative;z-index:1;letter-spacing:1px}
+.header .sub{color:#8b949e;font-size:0.85em;margin-top:6px;position:relative;z-index:1}
+.header .badge{display:inline-block;padding:3px 12px;border-radius:12px;font-size:0.75em;font-weight:600;margin-top:8px;position:relative;z-index:1}
+.badge-morning{background:rgba(88,166,255,0.15);color:#58a6ff}
+.badge-evening{background:rgba(210,153,34,0.15);color:#d29922}
+
+/* ── KPI 网格 ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-bottom:16px}
+.kpi-card{background:#131a26;border:1px solid #1e2d45;border-radius:10px;padding:14px;display:flex;flex-direction:column}
+.kpi-card .kpi-label{color:#8b949e;font-size:0.68em;letter-spacing:0.5px;margin-bottom:4px}
+.kpi-card .kpi-value{font-size:1.5em;font-weight:700;margin-bottom:2px}
+.kpi-card .kpi-change{font-size:0.8em;margin-bottom:6px}
+.kpi-card .kpi-note{font-size:0.7em;color:#6e7681;padding-top:6px;border-top:1px solid #1e2d45;line-height:1.4}
+
+/* ── 核心总结条 ── */
+.core-banner{background:linear-gradient(135deg,rgba(248,81,73,0.08),rgba(210,153,34,0.06));border:1px solid;border-radius:12px;padding:14px 18px;margin-bottom:14px;font-size:0.88em;font-weight:600;line-height:1.6;text-align:center}
+
+/* ── 总结面板 ── */
+.summary-panel{background:#131a26;border:1px solid #1e2d45;border-radius:12px;padding:16px;margin-bottom:14px}
+.summary-panel .sp-title{font-size:0.9em;font-weight:600;color:#e6edf3;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.summary-section{margin-bottom:10px}
+.summary-section:last-child{margin-bottom:0}
+.summary-section .ss-label{font-size:0.7em;color:#8b949e;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+.summary-item{display:flex;align-items:flex-start;gap:8px;padding:6px 10px;border-radius:6px;margin-bottom:4px;font-size:0.8em;line-height:1.45}
+.summary-item:last-child{margin-bottom:0}
+.summary-item.critical{border-left:3px solid #f85149;background:rgba(248,81,73,0.08)}
+.summary-item.important{border-left:3px solid #d29922;background:rgba(210,153,34,0.06)}
+.summary-item.info{border-left:3px solid #58a6ff;background:rgba(88,166,255,0.05)}
+.summary-item.positive{border-left:3px solid #3fb950;background:rgba(63,185,80,0.05)}
+.summary-item .si-icon{font-size:0.9em;flex-shrink:0;margin-top:1px}
+.summary-item .si-content{flex:1}
+.hl-red{color:#f85149;font-weight:700}
+.hl-yellow{color:#d29922;font-weight:700}
+.hl-green{color:#3fb950;font-weight:700}
+.hl-blue{color:#58a6ff;font-weight:700}
+
+/* ── 操作建议模块 ── */
+.trade-plan{background:#131a26;border:1px solid #1e2d45;border-radius:12px;padding:16px;margin-bottom:14px}
+.trade-plan .tp-title{font-size:0.9em;font-weight:600;color:#d29922;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.trade-section{margin-bottom:10px}
+.trade-section:last-child{margin-bottom:0}
+.trade-section h3{font-size:0.78em;color:#58a6ff;margin-bottom:4px}
+.trade-section p,.trade-section li{font-size:0.78em;color:#c9d1d9;line-height:1.6}
+.trade-section ul{list-style:none;padding-left:0}
+.trade-section li{padding:2px 0;padding-left:12px;position:relative}
+.trade-section li::before{content:'▸';position:absolute;left:0;color:#484f58;font-size:0.7em}
+
+/* ── 模块卡片 ── */
+.module{background:#131a26;border:1px solid #1e2d45;border-radius:12px;padding:16px;margin-bottom:14px}
+.module-hdr{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #1e2d45}
+.module-hdr .icon{font-size:1.2em}
+.module-hdr h2{font-size:0.95em;font-weight:600;color:#58a6ff;flex:1}
+.module-hdr .status{font-size:0.72em;padding:2px 8px;border-radius:6px}
+
+table{width:100%;border-collapse:collapse;font-size:0.8em}
+th,td{padding:6px 8px;text-align:left;border-bottom:1px solid #1e2d45}
+th{color:#8b949e;font-weight:500;font-size:0.85em}
+tr:hover{background:rgba(88,166,255,0.03)}
+
+.news-list{margin:0;padding:0;list-style:none}
+.news-item{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid #1e2d45;align-items:flex-start}
+.news-item:last-child{border-bottom:none}
+.news-date{color:#484f58;font-size:0.7em;white-space:nowrap;min-width:42px;padding-top:1px}
+.news-info{flex:1;min-width:0}
+.news-info a{color:#e6edf3;text-decoration:none;font-size:0.82em;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.news-info a:hover{color:#58a6ff}
+.news-info .src{color:#484f58;font-size:0.7em;margin-top:2px}
+
+.mat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.mat-card{background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:10px;text-align:center}
+.mat-card .name{font-size:0.72em;color:#8b949e}
+.mat-card .price{font-size:1.1em;font-weight:700;margin:3px 0}
+.mat-card .trend{font-size:0.7em;padding:1px 6px;border-radius:4px}
+
+.footer{text-align:center;padding:20px 0 40px;color:#484f58;font-size:0.72em;line-height:1.8}
+.footer a{color:#58a6ff;text-decoration:none}
+
+/* ── 估值模块 ── */
+.val-section{margin-bottom:16px}
+.val-section h3{font-size:0.82em;color:#58a6ff;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #1e2d45}
+.val-table{width:100%;border-collapse:collapse;font-size:0.78em;margin-bottom:12px}
+.val-table th,.val-table td{padding:5px 8px;text-align:center;border-bottom:1px solid #1e2d45}
+.val-table th{color:#8b949e;font-weight:500}
+.val-table td:first-child{text-align:left;font-weight:500}
+.band-bar{height:8px;border-radius:4px;background:#1e2d45;margin:28px 0 10px;position:relative;overflow:visible}
+.band-seg{height:100%;position:absolute;top:0}
+.band-marker{position:absolute;top:-6px;width:14px;height:20px;border-radius:3px;transform:translateX(-50%);z-index:2}
+.band-labels{display:flex;justify-content:space-between;font-size:0.65em;color:#484f58;margin-top:4px}
+.inst-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.inst-card{background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px;text-align:center}
+.inst-card .val{font-size:1.4em;font-weight:700}
+.inst-card .lbl{font-size:0.7em;color:#8b949e;margin-top:2px}
+.inst-card .note{font-size:0.68em;color:#6e7681;margin-top:4px}
+
+@media(max-width:600px){
+  body{padding:10px}
+  .header{padding:20px 14px}
+  .header h1{font-size:1.3em}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .mat-grid{grid-template-columns:repeat(2,1fr)}
+  .module{padding:12px}
+}
+
+/* ── 技术面分析模块 ── */
+.tech-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.tech-card{background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 10px;text-align:center}
+.tech-card .t-lbl{font-size:0.68em;color:#8b949e;margin-bottom:3px}
+.tech-card .t-val{font-size:1.25em;font-weight:700;margin-bottom:2px}
+.tech-card .t-dev{font-size:0.65em;padding:1px 0;display:block}
+.tech-card .t-status{font-size:0.68em;font-weight:600;margin-top:2px}
+.tech-chart{background:rgba(255,255,255,0.01);border:1px solid #1e2d45;border-radius:8px;padding:10px;margin-bottom:14px;overflow-x:auto}
+.tech-summary{padding:10px 0}
+.tech-summary li{font-size:0.78em;color:#c9d1d9;line-height:1.7;padding:2px 0;padding-left:14px;position:relative;list-style:none}
+.tech-summary li::before{content:'\2022';position:absolute;left:0;color:#484f58}
+.tech-summary .ts-warn{color:#f85149;font-weight:700}
+.tech-summary .ts-positive{color:#3fb950;font-weight:600}
+.tech-summary .ts-key{color:#d29922;font-weight:600}
+
+@media(max-width:600px){.tech-cards{grid-template-columns:repeat(2,1fr)}}
+
+/* ── AH溢价分析模块 ── */
+.ah-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.ah-card{background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 10px;text-align:center}
+.ah-card .a-lbl{font-size:0.68em;color:#8b949e;margin-bottom:3px}
+.ah-card .a-val{font-size:1.2em;font-weight:700;margin-bottom:2px}
+.ah-card .a-note{font-size:0.65em;color:#6e7681;margin-top:2px}
+.ah-chart{background:rgba(255,255,255,0.01);border:1px solid #1e2d45;border-radius:8px;padding:10px;margin-bottom:14px;overflow-x:auto}
+.ah-table{width:100%;border-collapse:collapse;font-size:0.72em;margin-bottom:12px}
+.ah-table th,.ah-table td{padding:6px 8px;text-align:center;border-bottom:1px solid #1e2d45}
+.ah-table th{color:#8b949e;font-weight:500;font-size:0.85em}
+.ah-table td:first-child{text-align:left;color:#8b949e;white-space:nowrap}
+.ah-deep{padding:10px 0}
+.ah-deep li{font-size:0.78em;color:#c9d1d9;line-height:1.7;padding:3px 0;padding-left:14px;position:relative;list-style:none}
+.ah-deep li::before{content:'•';position:absolute;left:0;color:#484f58}
+.ah-deep .ah-red{color:#f85149;font-weight:700}
+.ah-deep .ah-green{color:#3fb950;font-weight:600}
+.ah-deep .ah-gold{color:#d29922;font-weight:600}
+.ah-deep .ah-blue{color:#58a6ff;font-weight:600}
+
+/* ── PEG估值分析模块 ── */
+.peg-table{width:100%;border-collapse:collapse;font-size:0.8em;margin-bottom:14px}
+.peg-table th,.peg-table td{padding:7px 10px;border-bottom:1px solid #1e2d45}
+.peg-table th{color:#8b949e;font-weight:500;font-size:0.82em;text-align:left}
+.peg-table td:first-child{color:#8b949e;font-weight:500;width:35%}
+.peg-table td:nth-child(2){font-weight:600;width:25%}
+.peg-table td:nth-child(3){font-size:0.82em;color:#c9d1d9;width:40%}
+.peg-conclusion{background:rgba(63,185,80,0.06);border:1px solid rgba(63,185,80,0.2);border-radius:8px;padding:14px;margin-top:12px}
+.peg-conclusion .pc-title{font-size:0.85em;font-weight:700;color:#3fb950;margin-bottom:8px}
+.peg-conclusion .pc-item{font-size:0.78em;color:#c9d1d9;line-height:1.7;padding:2px 0}
+.peg-conclusion .pc-ok{color:#3fb950;font-weight:600}
+.peg-conclusion .pc-no{color:#8b949e}
+.peg-conclusion .pc-warn{color:#f85149;font-weight:600}
+.peg-range{background:rgba(210,153,34,0.06);border:1px solid rgba(210,153,34,0.2);border-radius:8px;padding:12px;margin-top:10px;text-align:center}
+.peg-range .pr-title{font-size:0.78em;color:#d29922;font-weight:600;margin-bottom:6px}
+.peg-range .pr-value{font-size:1.1em;font-weight:700;color:#d29922}
+.peg-range .pr-note{font-size:0.7em;color:#8b949e;margin-top:4px}
+
+@media(max-width:600px){.ah-cards{grid-template-columns:repeat(2,1fr)}}
+
+/* ── 分析师一致预期模块 ── */
+.ac-hero{display:flex;align-items:center;gap:16px;padding:16px;background:rgba(88,166,255,0.05);border:1px solid rgba(88,166,255,0.15);border-radius:10px;margin-bottom:14px;flex-wrap:wrap}
+.ac-hero .ac-badge{font-size:0.85em;font-weight:700;padding:6px 14px;border-radius:6px;white-space:nowrap}
+.ac-hero .ac-badge.buy{background:rgba(63,185,80,0.15);color:#3fb950;border:1px solid rgba(63,185,80,0.3)}
+.ac-hero .ac-badge.hold{background:rgba(210,153,34,0.15);color:#d29922;border:1px solid rgba(210,153,34,0.3)}
+.ac-hero .ac-badge.sell{background:rgba(248,81,73,0.15);color:#f85149;border:1px solid rgba(248,81,73,0.3)}
+.ac-hero .ac-info{font-size:0.8em;color:#c9d1d9;line-height:1.6;flex:1;min-width:200px}
+.ac-hero .ac-info b{color:#58a6ff}
+.ac-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.ac-card{background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 10px;text-align:center}
+.ac-card .ac-lbl{font-size:0.68em;color:#8b949e;margin-bottom:4px}
+.ac-card .ac-val{font-size:1.15em;font-weight:700;margin-bottom:2px}
+.ac-card .ac-sub{font-size:0.68em;color:#6e7681}
+.ac-target-bar{background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:14px;margin-bottom:14px}
+.ac-target-bar .at-title{font-size:0.78em;color:#8b949e;margin-bottom:8px}
+.at-range{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.at-range .at-label{font-size:0.7em;color:#6e7681;width:40px;text-align:right}
+.at-range .at-bar{flex:1;height:8px;background:rgba(255,255,255,0.05);border-radius:4px;position:relative;overflow:visible}
+.at-range .at-fill{height:100%;background:linear-gradient(90deg,#3fb950,#d29922,#f85149);border-radius:4px}
+.at-range .at-marker{position:absolute;top:-4px;width:2px;height:16px;background:#58a6ff;border-radius:1px}
+.ac-eps-table{width:100%;border-collapse:collapse;font-size:0.78em;margin-top:8px}
+.ac-eps-table th,.ac-eps-table td{padding:6px 10px;border-bottom:1px solid #1e2d45;text-align:center}
+.ac-eps-table th{color:#8b949e;font-weight:500;font-size:0.85em}
+.ac-eps-table td:first-child{text-align:left;color:#8b949e}
+@media(max-width:600px){.ac-cards{grid-template-columns:repeat(2,1fr)}.ac-hero{flex-direction:column;text-align:center}}
+
+/* ── 大资金动向模块 ── */
+.nf-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.nf-card{background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 10px;text-align:center}
+.nf-card .nf-lbl{font-size:0.68em;color:#8b949e;margin-bottom:3px}
+.nf-card .nf-val{font-size:1.2em;font-weight:700;margin-bottom:2px}
+.nf-card .nf-note{font-size:0.65em;color:#6e7681;margin-top:2px}
+.nf-table{width:100%;border-collapse:collapse;font-size:0.78em;margin-bottom:12px}
+.nf-table th,.nf-table td{padding:6px 10px;border-bottom:1px solid #1e2d45;text-align:center}
+.nf-table th{color:#8b949e;font-weight:500}
+.nf-deep{padding:8px 0}
+.nf-deep li{font-size:0.78em;color:#c9d1d9;line-height:1.7;padding:3px 0;padding-left:14px;position:relative;list-style:none}
+.nf-deep li::before{content:'\\2022';position:absolute;left:0;color:#484f58}
+@media(max-width:600px){.nf-cards{grid-template-columns:repeat(2,1fr)}}
+
+/* ── 财务面追踪模块 ── */
+.fin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.fin-item{background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 10px;text-align:center}
+.fin-item .f-lbl{font-size:0.68em;color:#8b949e;margin-bottom:3px}
+.fin-item .f-val{font-size:1.15em;font-weight:700;margin-bottom:2px}
+.fin-item .f-chg{font-size:0.68em;margin-top:2px}
+.fin-table{width:100%;border-collapse:collapse;font-size:0.75em;margin-bottom:12px}
+.fin-table th,.fin-table td{padding:5px 8px;border-bottom:1px solid #1e2d45;text-align:center}
+.fin-table th{color:#8b949e;font-weight:500;font-size:0.85em}
+.fin-table td:first-child{text-align:left;color:#8b949e;font-weight:500}
+.fin-metric{font-weight:600}
+@media(max-width:600px){.fin-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── 水电发电量模块 ── */
+.bt-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.bt-card{background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 10px;text-align:center}
+.bt-card .b-lbl{font-size:0.68em;color:#8b949e;margin-bottom:3px}
+.bt-card .b-val{font-size:1.2em;font-weight:700;margin-bottom:2px}
+.bt-card .b-note{font-size:0.65em;color:#6e7681;margin-top:2px}
+.bt-table{width:100%;border-collapse:collapse;font-size:0.78em;margin-bottom:12px}
+.bt-table th,.bt-table td{padding:6px 10px;border-bottom:1px solid #1e2d45;text-align:center}
+.bt-table th{color:#8b949e;font-weight:500}
+.bt-table td:first-child{text-align:left;color:#8b949e}
+.bt-deep{padding:8px 0}
+.bt-deep li{font-size:0.78em;color:#c9d1d9;line-height:1.7;padding:3px 0;padding-left:14px;position:relative;list-style:none}
+.bt-deep li::before{content:'\\2022';position:absolute;left:0;color:#484f58}
+@media(max-width:600px){.bt-cards{grid-template-columns:repeat(2,1fr)}}</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+  <h1>🔋 长江电力 · 日监控</h1>
+  <div class="sub">CJDL Ecosystem Radar · 2026-05-28 · 持仓0股</div>
+  <div class="sub" style="margin-top:2px">A股 <span style="color:#f85149;font-weight:700">¥27.24 +0.37%</span></div>
+  <span class="badge badge-morning">早报 ☀️</span>
+</div>
+  <div class="kpi-grid"><div class="kpi-card"><div class="kpi-label">CJDL A股</div><div class="kpi-value" style="color:#f85149">¥27.24</div><div class="kpi-change" style="color:#f85149">🔴 +0.4%</div><div class="kpi-note">连涨1日 累计+0.0% · 5日涨2.2%</div></div><div class="kpi-card"><div class="kpi-label">H股</div><div class="kpi-value" style="color:#8b949e">—</div><div class="kpi-note"></div></div><div class="kpi-card"><div class="kpi-label">PE(TTM)</div><div class="kpi-value" style="color:#58a6ff">18.5x</div><div class="kpi-note">PE=18.5x 偏低</div></div><div class="kpi-card"><div class="kpi-label">PEG</div><div class="kpi-value" style="color:#f85149">2.31</div><div class="kpi-change" style="color:#f85149">偏高区间 ⚠️</div><div class="kpi-note">PEG=2.31 偏高 距买点差-56.7%
+买入线 ¥12 (差56.7%)</div></div><div class="kpi-card"><div class="kpi-label">AH溢价</div><div class="kpi-value" style="color:#f85149">—</div><div class="kpi-note">—</div></div><div class="kpi-card"><div class="kpi-label">成交额</div><div class="kpi-value" style="color:#8b949e">30亿</div><div class="kpi-note">成交额30亿 正常 · 量能98.2x均量</div></div><div class="kpi-card"><div class="kpi-label">主力净流入</div><div class="kpi-value" style="color:#8b949e">—</div><div class="kpi-note">数据暂缺</div></div><div class="kpi-card"><div class="kpi-label">三峡入库流量期货</div><div class="kpi-value" style="color:#f85149">17.9万</div><div class="kpi-change" style="color:#f85149">+4.0%</div><div class="kpi-note">三峡入库流量17.9万/吨 成本压力</div></div><div class="kpi-card"><div class="kpi-label">行业(水电)</div><div class="kpi-value" style="color:#3fb950">-1.8%</div><div class="kpi-note">数据源: 电力行业指数
+强于行业2.2%</div></div><div class="kpi-card"><div class="kpi-label">MA60支撑</div><div class="kpi-value" style="color:#d29922">¥27</div><div class="kpi-note">MA60=¥27 距+1.11%
+临近核心支撑</div></div></div>
+  <div class="core-banner" style="border-color:#f85149">PEG 2.31 偏高 · 三峡入库流量17.89万/吨 成本压力</div>
+  <div class="summary-panel">
+  <div class="sp-title">📋 数据变化总结</div>
+  <div class="summary-item critical"><span class="si-icon">📊</span><span class="si-content"><span class="hl-red">PEG=2.31 偏高</span>，距买入区间还需跌56.7%至 ¥12 · PE 18.5x 偏低</span></div><div class="summary-item info"><span class="si-icon">📈</span><span class="si-content"><span class="hl-yellow">逆势上涨0.4% (大盘-1.25%)</span> → 个股独立利好驱动</span></div><div class="summary-item important"><span class="si-icon">📐</span><span class="si-content"><span class="hl-yellow">逼近MA60(¥27)核心支撑</span> · 若有效跌破则技术面转弱</span></div><div class="summary-item important"><span class="si-icon">⛏️</span><span class="si-content">三峡入库流量17.9万/吨 成本压力 → 成本端影响</span></div><div class="summary-item info"><span class="si-icon">🏭</span><span class="si-content">强于行业2.2% (行业水电 -1.8%)</span></div><div class="summary-item info"><span class="si-icon">💼</span><span class="si-content">成本¥25 浮盈9.0%</span></div>
+</div>
+  <div class="trade-plan">
+  <div class="tp-title">🎯 操作建议</div>
+  <p style="color:#f85149;font-weight:600;font-size:0.9em;margin-bottom:10px">PEG偏高，不建议追高，观望为主</p>
+  <div class="trade-section"><h3>📍 支撑位/压力位</h3><p>MA5=¥27 (短期压力) · MA20=¥27 · <span class="hl-yellow">MA60=¥27 (核心支撑)</span></p><p>心理关口: ¥400</p></div>
+  <div class="trade-section"><h3>🔔 加仓触发条件 (满足任一)</h3><ul>
+<li>条件A: MA60(¥27)附近企稳(连续2日收盘高于MA60) → 第一批加仓</li>
+<li>条件B: 跌破400后快速收回(长下影线) → 第二批加仓</li>
+<li>条件C: PEG进一步下降至0.6以下 → 一次性加仓</li>
+</ul></div>
+  <div class="trade-section"><h3>📋 加仓计划</h3><ul>
+<li>第一批: ¥22-30 × 30% (MA60支撑区)</li>
+<li>第二批: ¥393-400 × 40% (心理关口+恐慌区)</li>
+<li>第三批: ¥385以下 × 30% (极端情况，需重新评估基本面)</li>
+</ul></div>
+  <div class="trade-section"><h3>🎯 目标价</h3><p>买入价(PEG=1): ¥12 · 目标区间: ¥29-37 (基于PE 20-25x)</p><p>止损位: ¥22 (有效跌破视为逻辑破坏)</p><p>风险收益比: 约 1.1:1 (潜在涨幅+21.1% vs 潜在跌幅-19.2%)</p></div>
+</div>
+  <div class="module">
+  <div class="module-hdr"><span class="icon">📅</span><h2>本周走势回顾</h2></div>
+  <table class="val-table">
+    <tr><th>日期</th><th>收盘价</th><th>涨跌幅</th><th>主力净流向</th><th>关键事件</th></tr>
+    <tr><td>05-21</td><td>¥26.66</td><td style="color:#3fb950">-0.9%</td><td style="color:#8b949e">—</td><td style="font-size:0.72em;color:#8b949e">—</td></tr><tr><td>05-22</td><td>¥26.56</td><td style="color:#3fb950">-0.4%</td><td style="color:#8b949e">—</td><td style="font-size:0.72em;color:#8b949e">—</td></tr><tr><td>05-25</td><td>¥26.67</td><td style="color:#f85149">+0.4%</td><td style="color:#8b949e">—</td><td style="font-size:0.72em;color:#8b949e">—</td></tr><tr><td>05-26</td><td>¥27.14</td><td style="color:#f85149">+1.8%</td><td style="color:#8b949e">—</td><td style="font-size:0.72em;color:#8b949e">强势上涨</td></tr><tr><td>05-27</td><td>¥27.24</td><td style="color:#f85149">+0.4%</td><td style="color:#8b949e">—</td><td style="font-size:0.72em;color:#8b949e">—</td></tr>
+    <tr style="font-weight:700;border-top:2px solid #d29922">
+      <td>本周合计</td>
+      <td>¥27.24</td>
+      <td style="color:#f85149">+2.2%</td>
+      <td style="color:#3fb950">0.00亿</td>
+      <td style="font-size:0.72em;color:#d29922">大盘涨宁德跌，极端分化</td>
+    </tr>
+  </table>
+  <div style="margin-top:10px;padding:10px;background:rgba(210,153,34,0.06);border-left:3px solid #d29922;border-radius:4px;font-size:0.8em;color:#c9d1d9;line-height:1.6">
+    📝 本周CJDL累计上涨2.2%，2天下跌。
+
+每日涨跌: -0.9% → -0.4% → +0.4% → +1.8% → +0.4%
+
+📉 好消息是跌幅在收窄（前半周均值-0.6% → 后半周+0.8%），抛压可能接近尾声。
+
+📊 宁德跑赢大盘（周+2.2% vs 上证-1.2%），独立走强。
+
+💰 主力资金本周基本平衡（东财数据暂缺，待恢复后更新）。
+
+📏 当前PE=18.5x，PEG=2.31，估值偏高，需注意风险。
+
+📐 MA60=¥27，当前价距MA60仅1.1%，已逼近核心支撑位——这是技术面的关键防线。
+
+⛏️ 三峡入库流量17.9万/吨 成本压力——原材料成本上行，短期压缩利润空间。
+
+💡 估值偏高+趋势偏弱，建议观望为主，耐心等待PEG回到1.0以下的买入区间。
+  </div>
+</div>
+  <div class="module">
+  <div class="module-hdr"><span class="icon">📊</span><h2>估值判断</h2></div>
+
+  <!-- 子板块1: 估值水位 -->
+  <div class="val-section">
+    <h3>📏 估值水位</h3>
+    <table class="val-table">
+      <tr><th>指标</th><th>当前值</th><th>近5年分位</th><th>判断</th></tr>
+      <tr><td>PE(TTM)</td><td style="color:#3fb950;font-weight:600">18.5</td><td>~20%</td><td style="color:#3fb950">偏低估</td></tr><tr><td>PB</td><td style="color:#3fb950;font-weight:600">2.9</td><td>~15%</td><td style="color:#3fb950">偏低估</td></tr><tr><td>PS(TTM)</td><td style="color:#8b949e;font-weight:600">1.7</td><td>—</td><td style="color:#8b949e">中性</td></tr><tr><td>PEG(40%增速)</td><td style="color:#3fb950;font-weight:600">2.3</td><td>—</td><td style="color:#3fb950">合理</td></tr><tr><td>PEG(25%保守)</td><td style="color:#3fb950;font-weight:600">0.7</td><td>—</td><td style="color:#3fb950">低估</td></tr>
+    </table>
+  </div>
+
+  <!-- 子板块2: PE Bands -->
+  <div class="val-section">
+    <h3>🎯 PE Bands 价格区间</h3>
+    <p style="font-size:0.78em;color:#c9d1d9;margin-bottom:8px">当前¥27 处于<span class="hl-yellow">保守区</span>，PE=18.5x，距合理区下沿¥37仅差10元</p>
+    <div class="band-bar"><div style="position:relative"><span style="position:absolute;left:16.666666666666668%;transform:translateX(-50%);font-size:0.58em;color:#8b949e;top:-16px;z-index:1">¥22</span><span style="position:absolute;left:33.333333333333336%;transform:translateX(-50%);font-size:0.58em;color:#8b949e;top:-16px;z-index:1">¥27</span><span style="position:absolute;left:50.0%;transform:translateX(-50%);font-size:0.58em;color:#8b949e;top:-16px;z-index:1">¥31</span><span style="position:absolute;left:66.66666666666667%;transform:translateX(-50%);font-size:0.58em;color:#8b949e;top:-16px;z-index:1">¥37</span><span style="position:absolute;left:83.33333333333334%;transform:translateX(-50%);font-size:0.58em;color:#8b949e;top:-16px;z-index:1">¥44</span><span style="position:absolute;left:100.0%;transform:translateX(-50%);font-size:0.58em;color:#8b949e;top:-16px;z-index:1">¥52</span></div><div class="band-seg" style="left:0.0%;width:16.666666666666668%;background:#3fb950;opacity:0.3;border-right:1px solid #0a0e17"></div><div class="band-seg" style="left:16.666666666666668%;width:16.666666666666668%;background:#58a6ff;opacity:0.3;border-right:1px solid #0a0e17"></div><div class="band-seg" style="left:33.333333333333336%;width:16.666666666666668%;background:#8b949e;opacity:0.3;border-right:1px solid #0a0e17"></div><div class="band-seg" style="left:50.0%;width:16.666666666666668%;background:#d29922;opacity:0.3;border-right:1px solid #0a0e17"></div><div class="band-seg" style="left:66.66666666666667%;width:16.666666666666668%;background:#f85149;opacity:0.3;border-right:1px solid #0a0e17"></div><div class="band-seg" style="left:83.33333333333334%;width:16.666666666666668%;background:#f85149;opacity:0.3;border-right:1px solid #0a0e17"></div><div class="band-marker" style="left:41.66666666666667%;background:#fff;box-shadow:0 0 6px rgba(255,255,255,0.5)"></div>
+    <div style="position:absolute;left:41.66666666666667%;top:-28px;transform:translateX(-50%);background:#d29922;color:#0a0e17;padding:1px 8px;border-radius:4px;font-size:0.65em;font-weight:700;white-space:nowrap;z-index:3">
+      当前 ¥27
+    </div></div>
+    <div class="band-labels"><span>清仓</span><span>止损</span><span>保守</span><span>合理</span><span>偏高</span><span>泡沫</span></div>
+    <table class="val-table" style="margin-top:8px">
+      <tr><th>情景</th><th>PE</th><th>基准EPS</th><th>目标价</th></tr>
+      <tr><td style="color:#3fb950">清仓区</td><td>15x</td><td>1.47</td><td style="color:#3fb950;font-weight:600">¥22</td></tr><tr><td style="color:#58a6ff">止损区</td><td>18x</td><td>1.47</td><td style="color:#58a6ff;font-weight:600">¥27</td></tr><tr><td style="color:#8b949e">保守区</td><td>21x</td><td>1.47</td><td style="color:#8b949e;font-weight:600">¥31</td></tr><tr><td style="color:#d29922">合理区</td><td>25x</td><td>1.47</td><td style="color:#d29922;font-weight:600">¥37</td></tr><tr><td style="color:#f85149">偏高区</td><td>30x</td><td>1.47</td><td style="color:#f85149;font-weight:600">¥44</td></tr><tr><td style="color:#f85149">泡沫区</td><td>35x</td><td>1.47</td><td style="color:#f85149;font-weight:600">¥52</td></tr>
+    </table>
+  </div>
+
+  <!-- 子板块3: 同行估值对比 -->
+  <div class="val-section">
+    <h3>⚖️ 同行估值对比</h3>
+    <table class="val-table">
+      <tr><th>公司</th><th>PE(TTM)</th><th>ROE</th><th>PEG</th><th>估值性价比</th></tr>
+      <tr style="font-weight:700;color:#58a6ff"><td>长江电力</td><td style="color:#3fb950">18.5x</td><td>15.8%</td><td>0.74</td><td style="color:#3fb950">低估</td></tr><tr ><td>华能水电</td><td style="color:#3fb950">21.0x</td><td>10.0%</td><td>0.84</td><td style="color:#d29922">合理</td></tr><tr ><td>国投电力</td><td style="color:#3fb950">14.8x</td><td>9.9%</td><td>0.59</td><td style="color:#3fb950">低估</td></tr><tr ><td>川投能源</td><td style="color:#3fb950">15.5x</td><td>10.2%</td><td>0.62</td><td style="color:#3fb950">低估</td></tr><tr ><td>桂冠电力</td><td style="color:#3fb950">24.7x</td><td>16.6%</td><td>0.99</td><td style="color:#d29922">合理</td></tr><tr ><td>中国核电</td><td style="color:#3fb950">21.8x</td><td>6.8%</td><td>0.87</td><td style="color:#d29922">合理</td></tr>
+    </table>
+  </div>
+
+  <!-- 子板块4: 分红与机构定价 -->
+  <div class="val-section">
+    <h3>🏦 分红与机构定价</h3>
+    <div class="inst-cards">
+      <div class="inst-card"><div class="lbl">2025分红率</div><div class="val" style="color:#58a6ff">1.2%</div><div class="note">占净利润</div></div>
+      <div class="inst-card"><div class="lbl">股息率</div><div class="val" style="color:#3fb950">0.38%</div><div class="note">当前价位</div></div>
+      <div class="inst-card"><div class="lbl">机构评级</div><div class="val" style="color:#3fb950">9买入+2增持</div><div class="note">0中性/卖出</div></div>
+      <div class="inst-card"><div class="lbl">机构目标均价</div><div class="val" style="color:#d29922">¥520</div><div class="note">距当前+1809.0%上行空间</div></div>
+    </div>
+  </div>
+</div>
+  <div class="module">
+  <div class="module-hdr"><span class="icon">📈</span><h2>技术面分析</h2></div>
+
+  <!-- 4张指标卡 -->
+  <div class="tech-cards"><div class="tech-card">
+          <div class="t-lbl">收盘价</div>
+          <div class="t-val" style="color:#58a6ff">¥27.24</div>
+          <div class="t-status" style="color:#8b949e;font-size:0.68em;font-weight:600;margin-top:2px">当日收盘</div>
+          
+        </div><div class="tech-card">
+          <div class="t-lbl">MA5</div>
+          <div class="t-val" style="color:#d29922">¥26.85</div>
+          <div class="t-status" style="color:#3fb950;font-size:0.68em;font-weight:600;margin-top:2px">站上MA5，获得支撑</div>
+          <div class="t-dev" style="color:#3fb950">偏离 1.4%</div>
+        </div><div class="tech-card">
+          <div class="t-lbl">MA20</div>
+          <div class="t-val" style="color:#f85149">¥26.95</div>
+          <div class="t-status" style="color:#3fb950;font-size:0.68em;font-weight:600;margin-top:2px">站上MA20，获得支撑</div>
+          <div class="t-dev" style="color:#3fb950">偏离 1.1%</div>
+        </div><div class="tech-card">
+          <div class="t-lbl">MA60</div>
+          <div class="t-val" style="color:#3fb950">¥26.94</div>
+          <div class="t-status" style="color:#3fb950;font-size:0.68em;font-weight:600;margin-top:2px">站上MA60，获得支撑</div>
+          <div class="t-dev" style="color:#3fb950">偏离 1.1%</div>
+        </div></div>
+
+  <!-- 90天趋势图 -->
+  <div class="tech-chart"><svg viewBox="0 0 800 220" style="width:100%;height:auto;max-height:230px;display:block" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="800" height="220" fill="transparent"/>
+  <line x1="24" y1="190.0" x2="776.0" y2="190.0" stroke="#1e2d45" stroke-width="0.5"/>
+<line x1="24" y1="148.5" x2="776.0" y2="148.5" stroke="#1e2d45" stroke-width="0.5"/>
+<line x1="24" y1="107.0" x2="776.0" y2="107.0" stroke="#1e2d45" stroke-width="0.5"/>
+<line x1="24" y1="65.5" x2="776.0" y2="65.5" stroke="#1e2d45" stroke-width="0.5"/>
+<line x1="24" y1="24.0" x2="776.0" y2="24.0" stroke="#1e2d45" stroke-width="0.5"/>
+
+  <text x="18" y="193.0" text-anchor="end" font-size="9" fill="#484f58">¥25</text><text x="18" y="151.5" text-anchor="end" font-size="9" fill="#484f58">¥26</text><text x="18" y="110.0" text-anchor="end" font-size="9" fill="#484f58">¥27</text><text x="18" y="68.5" text-anchor="end" font-size="9" fill="#484f58">¥27</text><text x="18" y="27.0" text-anchor="end" font-size="9" fill="#484f58">¥28</text>
+  <text x="24.0" y="216" text-anchor="middle" font-size="8" fill="#484f58">01-08</text><text x="150.7" y="216" text-anchor="middle" font-size="8" fill="#484f58">01-29</text><text x="277.5" y="216" text-anchor="middle" font-size="8" fill="#484f58">02-27</text><text x="404.2" y="216" text-anchor="middle" font-size="8" fill="#484f58">03-20</text><text x="531.0" y="216" text-anchor="middle" font-size="8" fill="#484f58">04-13</text><text x="657.7" y="216" text-anchor="middle" font-size="8" fill="#484f58">05-07</text>
+  <polyline points="24.0,82.0 32.4,80.6 40.9,75.6 49.3,77.5 57.8,102.5 66.2,102.0 74.7,115.7 83.1,102.9 91.6,99.3 100.0,113.0 108.5,125.2 116.9,139.3 125.4,140.3 133.8,142.5 142.3,155.3 150.7,138.0 159.2,123.0 167.6,133.0 176.1,139.3 184.5,122.1 193.0,112.0 201.4,115.7 209.9,118.4 218.3,113.4 226.8,117.5 235.2,124.3 243.7,129.8 252.1,127.5 260.6,131.2 269.0,128.0 277.5,128.0 285.9,103.9 294.4,85.7 302.8,80.2 311.3,80.6 319.7,77.9 328.2,75.2 336.6,77.5 345.1,70.6 353.5,61.5 362.0,65.2 370.4,67.9 378.9,62.0 387.3,71.1 395.8,72.5 404.2,76.1 412.7,96.1 421.1,79.7 429.6,74.7 438.0,70.2 446.5,72.9 454.9,77.9 463.4,82.5 471.8,89.8 480.3,83.8 488.7,97.9 497.2,108.0 505.6,103.4 514.1,112.0 522.5,111.6 531.0,110.7 539.4,110.7 547.9,104.8 556.3,104.8 564.8,112.5 573.2,91.6 581.7,78.4 590.1,90.7 598.6,86.6 607.0,92.9 615.5,99.8 623.9,96.6 632.4,94.8 640.8,69.7 649.3,75.2 657.7,82.0 666.2,84.3 674.6,83.8 683.1,82.5 691.5,84.3 700.0,87.0 708.4,82.9 716.9,89.3 725.3,72.9 733.8,88.8 742.2,99.8 750.7,104.3 759.1,99.3 767.6,77.9 776.0,73.4" fill="none" stroke="#58a6ff" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+<polyline points="57.8,83.8 66.2,87.5 74.7,94.8 83.1,100.2 91.6,104.3 100.0,106.6 108.5,111.1 116.9,116.1 125.4,123.4 133.8,132.1 142.3,140.7 150.7,143.0 159.2,139.8 167.6,138.4 176.1,137.5 184.5,131.2 193.0,125.7 201.4,124.3 209.9,121.6 218.3,116.1 226.8,115.2 235.2,118.0 243.7,120.7 252.1,122.5 260.6,126.2 269.0,128.0 277.5,128.9 285.9,123.9 294.4,115.2 302.8,105.2 311.3,95.7 319.7,85.7 328.2,79.7 336.6,78.4 345.1,76.6 353.5,72.5 362.0,70.2 370.4,68.4 378.9,65.6 387.3,65.6 395.8,67.9 404.2,69.7 412.7,75.6 421.1,79.3 429.6,79.7 438.0,79.3 446.5,78.8 454.9,75.2 463.4,75.6 471.8,78.8 480.3,81.6 488.7,86.6 497.2,92.5 505.6,96.6 514.1,101.1 522.5,106.6 531.0,109.3 539.4,109.8 547.9,109.8 556.3,108.4 564.8,108.9 573.2,104.8 581.7,98.4 590.1,95.7 598.6,92.0 607.0,87.9 615.5,89.8 623.9,93.4 632.4,94.3 640.8,90.7 649.3,87.0 657.7,83.8 666.2,81.1 674.6,78.8 683.1,81.6 691.5,83.4 700.0,84.3 708.4,84.3 716.9,85.2 725.3,83.4 733.8,84.3 742.2,86.6 750.7,91.1 759.1,92.9 767.6,93.8 776.0,91.1" fill="none" stroke="#d29922" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+<polyline points="184.5,115.7 193.0,117.1 201.4,118.9 209.9,120.7 218.3,122.5 226.8,123.4 235.2,124.3 243.7,125.2 252.1,126.6 260.6,128.0 269.0,128.9 277.5,128.9 285.9,127.1 294.4,124.3 302.8,121.1 311.3,117.5 319.7,114.8 328.2,112.0 336.6,109.3 345.1,106.1 353.5,102.9 362.0,100.7 370.4,98.4 378.9,95.2 387.3,93.4 395.8,91.1 404.2,88.4 412.7,87.0 421.1,84.7 429.6,81.6 438.0,78.8 446.5,76.1 454.9,74.7 463.4,74.7 471.8,75.2 480.3,75.2 488.7,76.1 497.2,77.9 505.6,79.3 514.1,81.1 522.5,83.8 531.0,86.1 539.4,88.4 547.9,90.2 556.3,92.0 564.8,93.8 573.2,94.8 581.7,93.8 590.1,94.3 598.6,95.2 607.0,96.1 615.5,97.5 623.9,98.4 632.4,98.9 640.8,97.9 649.3,97.5 657.7,97.0 666.2,95.7 674.6,94.8 683.1,93.4 691.5,92.0 700.0,90.7 708.4,89.3 716.9,88.4 725.3,87.0 733.8,85.7 742.2,86.1 750.7,87.5 759.1,87.9 767.6,87.5 776.0,86.6" fill="none" stroke="#f85149" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+<polyline points="522.5,100.7 531.0,101.1 539.4,101.6 547.9,102.0 556.3,102.5 564.8,102.9 573.2,102.5 581.7,102.0 590.1,101.6 598.6,101.6 607.0,101.1 615.5,100.7 623.9,100.2 632.4,99.3 640.8,97.9 649.3,97.0 657.7,95.7 666.2,95.2 674.6,94.3 683.1,93.4 691.5,92.9 700.0,92.5 708.4,92.0 716.9,91.6 725.3,90.7 733.8,90.2 742.2,89.8 750.7,89.3 759.1,88.8 767.6,87.9 776.0,87.0" fill="none" stroke="#3fb950" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+
+  <line x1="32" y1="10" x2="48" y2="10" stroke="#58a6ff" stroke-width="2"/><text x="52" y="14" font-size="9" fill="#8b949e">收盘价</text><line x1="114" y1="10" x2="130" y2="10" stroke="#d29922" stroke-width="2"/><text x="134" y="14" font-size="9" fill="#8b949e">MA5</text><line x1="196" y1="10" x2="212" y2="10" stroke="#f85149" stroke-width="2"/><text x="216" y="14" font-size="9" fill="#8b949e">MA20</text><line x1="278" y1="10" x2="294" y2="10" stroke="#3fb950" stroke-width="2"/><text x="298" y="14" font-size="9" fill="#8b949e">MA60</text>
+</svg></div>
+
+  <!-- 技术面研判 -->
+  <div class="tech-summary">
+    <ul><li><span class="ts-key">📌 今日走势</span>：长江电力<span class="ts-key">+0.37%</span>，大盘-1.25%</li><li><span class="ts-positive">🌟 今日逆势上涨</span>——大盘-1.25%下跌，宁德独自上涨+0.37%。这种"大盘跌我涨"的走势通常意味着<b>资金正在回流锂电龙头</b>，显示市场对宁德基本面的认可。</li><li><span class="ts-key">📊 均线诊断</span>：</li><li>  当前股价<span class="ts-positive">站上所有均线</span>（MA5=27、MA20=27、MA60=27），三条均线形成<span class="ts-positive">多头排列</span>——这是技术面上较强的看涨信号。短期均线(MA5)在长期均线(MA60)上方，说明近期买入成本高于长期成本，市场情绪偏多。</li><li>  MA5(27)略低于MA20(27)，短期均线走弱，但差距不大，若MA5能在未来几个交易日拐头向上，将重新形成"金叉"信号。</li><li><span class="ts-positive">🔄 积极信号</span>：大盘跌-1.25%但宁德逆势上涨——说明<b>聪明钱正在逆势布局宁德</b>，抗跌性强，资金认可度高。</li><li><span class="ts-key">🎯 关键价位</span>：<span style="color:#f85149">上方压力</span> 心理关口40；<span style="color:#3fb950">下方支撑</span> MA5=27、MA20=27、MA60=27、心理关口20</li><li><span class="ts-key">💼 操作参考</span>：股价在MA60支撑位附近，是<b>观察窗口而非操作窗口</b>。长线投资者可考虑在MA60附近分批金字塔式建仓（例如¥27上方分3-5批），止损设于MA60下方2-3%。短线交易者建议等待放量阳线确认信号。</li><li><span class="ts-key">📝 一句话</span>：短期承压但MA60支撑有效，处于关键观察期。基本面未恶化，长线逻辑不变，耐心等待企稳。</li></ul>
+  </div>
+</div>
+  <div class="module"><div class="module-hdr"><span class="icon">💱</span><h2>AH溢价分析</h2></div><div style="text-align:center;color:#6e7681;padding:30px">长江电力无H股上市，AH溢价分析不适用</div></div>
+  <div class="module">
+  <div class="module-hdr"><span class="icon">🧮</span><h2>PEG估值分析</h2></div>
+
+  <table class="peg-table">
+      <tr><th>指标</th><th>数值</th><th>评估</th></tr>
+      <tr><td>当前股价</td><td style="color:#58a6ff">¥27.24</td><td></td></tr><tr><td>PE(TTM)</td><td style="color:#e6edf3">18.5x</td><td><span style="color:#3fb950">历史偏低</span></td></tr><tr><td>预测EPS(2026E)</td><td style="color:#e6edf3">¥1.59</td><td>基于8%增长假设</td></tr><tr><td>远期PE(2026E)</td><td style="color:#e6edf3">17.13x</td><td>¥27 / ¥1.59</td></tr><tr><td>PEG</td><td style="color:#e6edf3">2.31</td><td><span style="color:#f85149">>1.5 → 偏高区间 ⚠️</span></td></tr><tr><td>PB</td><td style="color:#e6edf3">2.9x</td><td>ROE 15.83%支撑</td></tr><tr><td>行业PE中位</td><td style="color:#e6edf3">20.99x</td><td><span style="color:#3fb950">宁德折价12%</span></td></tr><tr><td>机构目标均价</td><td style="color:#e6edf3">¥520</td><td>11家覆盖，上行+1809.0%</td></tr>
+    </table>
+
+  <div class="peg-conclusion">
+    <div class="pc-title">🧮 PEG估值结论：PEG = <span style="color:#f85149">2.31 &gt; 1.5</span>，处于<span style="color:#f85149">偏高区间</span></div>
+    <div class="pc-item">• 买入条件（PEG&lt;1）：<span class="pc-no">—</span></div>
+    <div class="pc-item">• 卖出条件（PEG&gt;1.5）：<span class="pc-warn">⚠️ 触发 → 考虑减仓</span></div>
+    <div class="pc-item">• 当前价位：¥27.24，今日+0.4%，估值安全边际充足</div>
+  </div>
+
+  <div class="peg-range"><div class="pr-title">合理估值区间（基于2026E EPS ¥1.59 × PE 25-30x）</div><div class="pr-value">¥40 — ¥48</div><div class="pr-note">较当前价有 <span style="color:#3fb950;font-weight:600">+46.8% ~ +76.2%</span> 上行空间</div></div>
+</div>
+  <div class="module">
+  <div class="module-hdr"><span class="icon">🔮</span><h2>分析师一致预期</h2></div>
+  <div class="ac-hero">
+      <span class="ac-badge buy">买入</span>
+      <div class="ac-info">
+        近1月 <b>12</b> 家机构评级 ·
+        买入 <b>9</b> ·
+        增持 <b>3</b> ·
+        中性 <b>0</b><br>
+        看多比例 <b>100%</b> · 无减持/卖出评级
+      </div>
+    </div>
+  <div class="ac-cards"><div class="ac-card">
+      <div class="ac-lbl">1月内</div>
+      <div class="ac-val" style="color:#3fb950">买入</div>
+      <div class="ac-sub">买9·增3/12家</div>
+    </div><div class="ac-card">
+      <div class="ac-lbl">2月内</div>
+      <div class="ac-val" style="color:#3fb950">买入</div>
+      <div class="ac-sub">买10·增3/13家</div>
+    </div><div class="ac-card">
+      <div class="ac-lbl">3月内</div>
+      <div class="ac-val" style="color:#3fb950">买入</div>
+      <div class="ac-sub">买10·增3/13家</div>
+    </div></div>
+  <div class="ac-target-bar">
+      <div class="at-title">🎯 一致预期目标区间 · 合理估值 <b style="color:#58a6ff">¥29~44</b> · 上行空间 <b style="color:#3fb950">+35.8%</b></div>
+      <div class="at-range">
+        <span class="at-label">¥29</span>
+        <div class="at-bar"><div class="at-fill" style="width:100%"></div><div class="at-marker" style="left:0%"></div></div>
+        <span class="at-label">¥44</span>
+      </div>
+      <div style="text-align:center;font-size:0.7em;color:#58a6ff;margin-top:4px">▲ 现价 ¥27 · 隐含PE 18.6x</div>
+    </div>
+  <table class="ac-eps-table"><tr><th>年度</th><th>类型</th><th>一致预期EPS</th><th>对应PE</th><th>ROE</th></tr><tr><td>2025</td><td style="color:#8b949e">实际</td><td class="fin-metric">¥1.41</td><td>19.3x</td><td>15.9%</td></tr><tr><td>2026</td><td style="color:#58a6ff">预测</td><td class="fin-metric">¥1.46</td><td>18.6x</td><td>15.3%</td></tr><tr><td>2027</td><td style="color:#58a6ff">预测</td><td class="fin-metric">¥1.52</td><td>17.9x</td><td>15.1%</td></tr><tr><td>2028</td><td style="color:#58a6ff">预测</td><td class="fin-metric">¥1.56</td><td>17.5x</td><td>14.7%</td></tr></table>
+</div>
+  <div class="module">
+  <div class="module-hdr"><span class="icon">🦈</span><h2>大资金动向</h2></div>
+  <div class="nf-cards">
+      <div class="nf-card">
+        <div class="nf-lbl">近30日大宗交易</div>
+        <div class="nf-val">2笔</div>
+        <div class="nf-note">合计 2.4亿</div>
+      </div>
+      <div class="nf-card">
+        <div class="nf-lbl">机构席位动向</div>
+        <div class="nf-val" style="color:#3fb950">机构净买入</div>
+        <div class="nf-note">买1笔 · 卖0笔</div>
+      </div>
+      <div class="nf-card">
+        <div class="nf-lbl">主力资金（5日）</div>
+        <div class="nf-val" style="color:#8b949e">—亿</div>
+        <div class="nf-note">超大单+大单净额</div>
+      </div>
+    </div>
+  <table class="nf-table"><tr><th>日期</th><th>成交价</th><th>成交量(万股)</th><th>成交额(万)</th><th>买方</th><th>卖方</th></tr><tr><td>2026-05-27</td><td>¥390.43<span style="font-size:0.7em;color:#3fb950">(+1333.3%)</span></td><td>49</td><td>19131</td><td style="color:#c9d1d9;font-size:0.85em">中信证券股份有限公司上海…</td><td style="color:#c9d1d9;font-size:0.85em">华泰证券股份有限公司上海…</td></tr><tr><td>2026-05-12</td><td>¥431.25<span style="font-size:0.7em;color:#3fb950">(+1483.1%)</span></td><td>12</td><td>5069</td><td style="color:#3fb950;font-size:0.85em">机构专用</td><td style="color:#c9d1d9;font-size:0.85em">华泰证券股份有限公司上海…</td></tr></table>
+  <ul class="nf-deep"><li>🟢 近30日机构专用席位净买入1笔，机构通过大宗渠道主动吸筹</li>
+<li>📈 近期2笔大宗成交价高于现价（溢价成交），机构认可当前估值</li></ul>
+</div>
+  <div class="module">
+  <div class="module-hdr"><span class="icon">📊</span><h2>财务面追踪</h2></div>
+  <div class="fin-grid">
+      <div class="fin-item">
+        <div class="f-lbl">PE(TTM)</div>
+        <div class="f-val">18.47x</div>
+        <div class="f-chg" style="color:#3fb950">低估</div>
+      </div>
+      <div class="fin-item">
+        <div class="f-lbl">ROE</div>
+        <div class="f-val">15.83%</div>
+        <div class="f-chg" style="color:#3fb950">良好</div>
+      </div>
+      <div class="fin-item">
+        <div class="f-lbl">市净率</div>
+        <div class="f-val">2.92x</div>
+        <div class="f-chg" style="color:#8b949e">总市值6665.14亿</div>
+      </div>
+      <div class="fin-item">
+        <div class="f-lbl">毛利率(QoQ)</div>
+        <div class="f-val">28.0%</div>
+        <div class="f-chg" style="color:#8b949e">↓ 略降</div>
+      </div>
+    </div>
+  <table class="fin-table"><tr><th>报告期</th><th>营收(亿)</th><th>净利润(亿)</th><th>EPS</th><th>ROE</th><th>毛利率</th></tr><tr><td>2024Q1</td><td class="fin-metric">797</td><td class="fin-metric">105</td><td>¥2.39</td><td>24.0%</td><td>26.4%</td></tr><tr><td>2024Q2</td><td class="fin-metric">870</td><td class="fin-metric">123</td><td>¥2.8</td><td>25.4%</td><td>27.1%</td></tr><tr><td>2024Q3</td><td class="fin-metric">923</td><td class="fin-metric">131</td><td>¥2.98</td><td>25.8%</td><td>27.8%</td></tr><tr><td>2024Q4</td><td class="fin-metric">1050</td><td class="fin-metric">148</td><td>¥3.36</td><td>26.5%</td><td>28.2%</td></tr><tr><td>2025Q1</td><td class="fin-metric">980</td><td class="fin-metric">139</td><td>¥3.16</td><td>25.0%</td><td>28.0%</td></tr></table>
+  <ul class="nf-deep"><li>📈 最新季度营收 980亿 · 环比 <span style="color:#f85149">-6.7%</span></li>
+<li>💰 净利润 139亿 · 环比 <span style="color:#f85149">-6.1%</span></li>
+<li>📊 营收同比 <span style="color:#3fb950">+23.0%</span> · 净利同比 <span style="color:#3fb950">+32.4%</span></li>
+<li>🔋 长江电力毛利率稳步提升至28%+，受益于三峡入库流量成本下降+规模效应，盈利能力持续改善</li></ul>
+</div>
+  <div class="module">
+  <div class="module-hdr"><span class="icon">🔋</span><h2>水电发电量</h2></div>
+  <div class="bt-cards">
+      <div class="bt-card">
+        <div class="b-lbl">CJDL发电量(2025-04)</div>
+        <div class="b-val">16.3 GWh</div>
+        <div class="b-note" style="color:#f85149">环比 -4.7%</div>
+      </div>
+      <div class="bt-card">
+        <div class="b-lbl">国内市占率</div>
+        <div class="b-val" style="color:#f85149">44.3%</div>
+        <div class="b-note" style="color:#f85149">环比 -0.5pp</div>
+      </div>
+      <div class="bt-card">
+        <div class="b-lbl">行业总装机</div>
+        <div class="b-val">36.8 GWh</div>
+        <div class="b-note">2025-04</div>
+      </div>
+      <div class="bt-card">
+        <div class="b-lbl">全球市占率</div>
+        <div class="b-val">~37%</div>
+        <div class="b-note">SNE Research</div>
+      </div>
+    </div>
+  <table class="bt-table"><tr><th>月份</th><th>行业总装机(GWh)</th><th>CJDL装机(GWh)</th><th>CJDL市占率</th></tr><tr><td>2025-04</td><td>36.8</td><td class="fin-metric">16.3</td><td style="color:#d29922"><b>44.3%</b></td></tr><tr><td>2025-03</td><td>38.2</td><td class="fin-metric">17.1</td><td style="color:#d29922"><b>44.8%</b></td></tr><tr><td>2025-02</td><td>28.0</td><td class="fin-metric">12.8</td><td style="color:#3fb950"><b>45.7%</b></td></tr><tr><td>2025-01</td><td>32.5</td><td class="fin-metric">14.6</td><td style="color:#d29922"><b>44.9%</b></td></tr></table>
+  <ul class="bt-deep">
+      <li>🏆 国内市占率稳定在 44-46% 区间，连续多年保持绝对龙头地位</li>
+      <li>🌍 CJDL 2025年全球市占率约 37-38% (SNE Research)</li>
+      <li>📌 国内市占率稳定在44-46%区间，全球龙头地位稳固</li>
+      <li>📅 每月11日左右发布上月数据，需手动更新</li>
+    </ul>
+</div>
+  <div class="module">
+  <div class="module-hdr"><span class="icon">⛏️</span><h2>上游原材料雷达</h2><span class="status" style="background:rgba(88,166,255,0.1);color:#58a6ff">平均 -0.3%</span></div>
+  <div class="mat-grid"><div class="mat-card"><div class="name">三峡入库流量</div><div class="price">25000m³/s</div><div class="trend" style="background:rgba(88,166,255,0.1);color:#58a6ff">半年P36% · 中部</div></div><div class="mat-card"><div class="name">上网电价(含税)</div><div class="price">0.28元/kWh</div><div class="trend" style="background:rgba(88,166,255,0.1);color:#58a6ff">半年P30% · 偏低</div></div><div class="mat-card"><div class="name">资产负债率</div><div class="price">58.0%</div><div class="trend" style="background:rgba(88,166,255,0.1);color:#58a6ff">半年P30% · 偏低</div></div></div>
+  <table style="margin-top:12px">
+    <tr><th>上游龙头</th><th>价格</th><th>今日</th><th>5日</th><th>15日</th><th>30日</th><th>走势小结</th></tr>
+    <tr><td>中国电建</td><td style="color:#3fb950;font-weight:600">¥5.28</td><td style="color:#3fb950">-2.8%</td><td style="color:#3fb950">-3.6%</td><td style="color:#3fb950">-11.4%</td><td style="color:#3fb950">-7.0%</td><td style="font-size:0.72em;color:#8b949e">持续走弱</td></tr><tr><td>东方电气</td><td style="color:#f85149;font-weight:600">¥36.05</td><td style="color:#f85149">+1.0%</td><td style="color:#3fb950">-0.2%</td><td style="color:#3fb950">-10.1%</td><td style="color:#3fb950">-9.2%</td><td style="font-size:0.72em;color:#8b949e">持续走弱</td></tr><tr><td>国电南瑞</td><td style="color:#f85149;font-weight:600">¥25.57</td><td style="color:#f85149">+0.3%</td><td style="color:#3fb950">-0.3%</td><td style="color:#3fb950">-3.3%</td><td style="color:#3fb950">-1.2%</td><td style="font-size:0.72em;color:#8b949e">横盘震荡</td></tr><tr><td>特变电工</td><td style="color:#f85149;font-weight:600">¥26.06</td><td style="color:#f85149">+0.1%</td><td style="color:#f85149">+0.6%</td><td style="color:#3fb950">-6.3%</td><td style="color:#3fb950">-3.2%</td><td style="font-size:0.72em;color:#8b949e">横盘震荡，短期反转</td></tr>
+  </table>
+</div>
+  <div class="module">
+  <div class="module-hdr"><span class="icon">📊</span><h2>板块指数联动</h2></div>
+  <table><tr><th>板块</th><th>点位</th><th>涨跌幅</th></tr><tr><td>电力行业</td><td style="color:#3fb950">2331.07</td><td style="color:#3fb950">-1.8%</td></tr><tr><td>公用事业</td><td style="color:#f85149">4819.76</td><td style="color:#f85149">+0.1%</td></tr><tr><td>绿色电力</td><td style="color:#3fb950">1317.70</td><td style="color:#3fb950">-1.4%</td></tr><tr><td>水力发电</td><td style="color:#3fb950">6156.12</td><td style="color:#3fb950">-1.2%</td></tr></table>
+</div>
+  
+  <div class="module">
+  <div class="module-hdr"><span class="icon">📰</span><h2>本周重大资讯 (5/19-5/25)</h2></div>
+  <div style="margin-bottom:10px"><span style="font-size:0.78em;font-weight:600;color:#f85149">🏢 CJDL动态</span>
+            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #f85149;border-radius:4px">
+              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
+                <a href="http://finance.eastmoney.com/a/202605273751596243.html" target="_blank" style="color:#e6edf3;text-decoration:none">长江电力5月27日大宗交易成交352.82万元</a>
+              </div>
+              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">据天眼查APP显示，中国长江电力股份有限公司成立于2002年11月04日，注册资本2446821.7716万人民币。</div>
+              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-05-27 · 证券时报网</div>
+            </div>
+            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #f85149;border-radius:4px">
+              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
+                <a href="http://stock.eastmoney.com/a/202605273751378813.html" target="_blank" style="color:#e6edf3;text-decoration:none">大宗交易：长江电力成交352.82万元，折价0.37%（5-27）</a>
+              </div>
+              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">2026年5月27日，长江电力发生1笔大宗交易，共成交13.00万股，成交金额352.82万元。 该笔大宗交易成交均价27.14元，较该股当日收盘价27.24元折价0.37%。 免责声明：本文基于AI生产，仅供参考，不构成任何投资建议，据此</div>
+              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-05-27 · 东方财富Choice数据</div>
+            </div>
+            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #f85149;border-radius:4px">
+              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
+                <a href="http://stock.eastmoney.com/a/202605253748247382.html" target="_blank" style="color:#e6edf3;text-decoration:none">大宗交易：长江电力成交3600.45万元（5-25）</a>
+              </div>
+              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">2026年5月25日，长江电力发生1笔大宗交易，共成交135.00万股，成交金额3600.45万元。 该笔大宗交易成交均价26.67元，较该股当日收盘价26.67元持平。 免责声明：本文基于AI生产，仅供参考，不构成任何投资建议，据此操作风</div>
+              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-05-25 · 东方财富Choice数据</div>
+            </div></div><div style="margin-bottom:10px"><span style="font-size:0.78em;font-weight:600;color:#d29922">📊 机构观点</span>
+            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #d29922;border-radius:4px">
+              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
+                <a href="http://finance.eastmoney.com/a/202605273751320891.html" target="_blank" style="color:#e6edf3;text-decoration:none">美股最新评级丨东吴证券维持英伟达买入评级</a>
+              </div>
+              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">财联社5月27日讯以下为各家券商对美股的最新评级和目标价： 　　国信证券维持BOSS直聘（BZ.O）优于大市评级： 　　26Q1收入同比+8%，经调整净利润率41%，AI赋能提升推荐效率，白领及大企业招聘需求复苏明显。</div>
+              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-05-27 · 财联社</div>
+            </div>
+            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #d29922;border-radius:4px">
+              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
+                <a href="http://finance.eastmoney.com/a/202605273751596243.html" target="_blank" style="color:#e6edf3;text-decoration:none">长江电力5月27日大宗交易成交352.82万元</a>
+              </div>
+              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">据天眼查APP显示，中国长江电力股份有限公司成立于2002年11月04日，注册资本2446821.7716万人民币。</div>
+              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-05-27 · 证券时报网</div>
+            </div>
+            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #d29922;border-radius:4px">
+              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
+                <a href="http://stock.eastmoney.com/a/202605273751378813.html" target="_blank" style="color:#e6edf3;text-decoration:none">大宗交易：长江电力成交352.82万元，折价0.37%（5-27）</a>
+              </div>
+              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">2026年5月27日，长江电力发生1笔大宗交易，共成交13.00万股，成交金额352.82万元。 该笔大宗交易成交均价27.14元，较该股当日收盘价27.24元折价0.37%。 免责声明：本文基于AI生产，仅供参考，不构成任何投资建议，据此</div>
+              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-05-27 · 东方财富Choice数据</div>
+            </div></div><div style="margin-bottom:10px"><span style="font-size:0.78em;font-weight:600;color:#58a6ff">🏭 行业趋势</span>
+            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #58a6ff;border-radius:4px">
+              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
+                <a href="http://finance.eastmoney.com/a/202605273751494015.html" target="_blank" style="color:#e6edf3;text-decoration:none">算力成为“新水电”，全国一体化算力网如何落地?</a>
+              </div>
+              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">“1”指已建成发布的国家算力互联网服务节点，负责全国算力资源的统一标识分配与运行监测；“M”指区域节点，重点面向算力需求旺盛地区提供标识注册、资源汇聚等综合性支撑服务；“N”指行业节点，聚焦重点行业提供市场化服务并接入区域节点。</div>
+              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-05-27 · 21世纪经济报道</div>
+            </div>
+            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #58a6ff;border-radius:4px">
+              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
+                <a href="http://finance.eastmoney.com/a/202605263748587118.html" target="_blank" style="color:#e6edf3;text-decoration:none">顺网科技： 让算力将像水电一样随取随用</a>
+              </div>
+              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">顺网科技副总裁、董事会秘书戎颂怡向记者解释，“现在，我们已在全国铺了超330个节点机房，搭起一张分布式算力网络，目标就是让算力像水电一样，大家随取随用。”</div>
+              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-05-26 · 中国证券报</div>
+            </div>
+            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #58a6ff;border-radius:4px">
+              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
+                <a href="http://finance.eastmoney.com/a/202605273751591226.html" target="_blank" style="color:#e6edf3;text-decoration:none">建发合诚：公司尚未参与雅下水电工程、川藏铁路及新藏铁路等项目的建设服务</a>
+              </div>
+              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">证券日报网讯 5月27日，建发合诚在互动平台回答投资者提问时表示，公司尚未参与雅下水电工程、川藏铁路及新藏铁路等项目的建设服务。近期，公司正推进相关项目接洽，但暂无具体项目落地。</div>
+              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-05-27 · 证券日报</div>
+            </div></div>
+  <div style="margin-top:14px;padding-top:12px;border-top:1px solid #1e2d45">
+    <div style="font-size:0.82em;font-weight:600;color:#d29922;margin-bottom:10px">📋 本周资讯对长江电力的影响评估</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px"><div style="background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 14px">
+          <div style="font-size:0.75em;font-weight:700;color:#f85149;margin-bottom:6px">📈 股价反应</div>
+          <div style="font-size:0.7em;color:#8b949e;line-height:1.65">本周涨1日，累计+0.0%，短线多头占优。从资讯面看，长江电力本周有多条公司动态发布，市场短期更多受资金面和板块轮动影响。大盘方面，新能源板块整体表现弱于上证指数，板块内部轮动加速，龙头股弹性逐步恢复。</div>
+        </div><div style="background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 14px">
+          <div style="font-size:0.75em;font-weight:700;color:#d29922;margin-bottom:6px">💰 估值影响</div>
+          <div style="font-size:0.7em;color:#8b949e;line-height:1.65">当前PE(TTM)=23.6x，PEG=2.31，处于合理区间。本周多家机构发布研报，多数维持「买入」评级，目标价在¥450-500区间，较当前价有15%-25%上行空间。伴随PE持续压缩，市场给予长江电力的成长性溢价几乎消失，估值已趋于合理，向上弹性需靠业绩催化。关注下周即将披露的月度排产数据，若超预期将直接催化估值修复。</div>
+        </div><div style="background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 14px">
+          <div style="font-size:0.75em;font-weight:700;color:#3fb950;margin-bottom:6px">⛏️ 成本端</div>
+          <div style="font-size:0.7em;color:#8b949e;line-height:1.65">上游核心原材料三峡入库流量最新报价约10万元/吨，三峡入库流量17.9万/吨 成本压力。从半年维度看，三峡入库流量价格走势平稳，这对长江电力的水电成本构成直接利好——原材料成本约占水电总成本60%，锂价每下降10%对应毛利率提升约2个百分点。其他关键材料方面，正极材料和电解液价格同步走弱，整体成本环境较去年同期显著改善。中长期来看，长江电力向上游操作参考、镍矿持续布局，原材料自供率提升将进一步熨平成本波动。</div>
+        </div><div style="background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 14px">
+          <div style="font-size:0.75em;font-weight:700;color:#58a6ff;margin-bottom:6px">🏭 行业竞争</div>
+          <div style="font-size:0.7em;color:#8b949e;line-height:1.65">从本周资讯看，新能源车渗透率持续攀升，终端需求景气度未减。长江电力全球动力水电装机市占率维持在37%左右，连续多年稳居第一，与第二名差距仍在拉大。固态水电等下一代技术仍在研发阶段，短期内不会撼动宁德在液态锂水电领域的统治地位。比亚迪、亿纬锂能等二线厂商加速扩产，但宁德在技术迭代、客户绑定和规模效应上仍具显著护城河。海外方面，长江电力匈牙利工厂、印尼项目稳步推进，全球化产能布局领先同行至少2-3年。</div>
+        </div><div style="background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 14px">
+          <div style="font-size:0.75em;font-weight:700;color:#58a6ff;margin-bottom:6px">📜 政策环境</div>
+          <div style="font-size:0.7em;color:#8b949e;line-height:1.65">本周暂无重大政策变动，国内储能市场已进入装机爆发期，2025年新增装机预计同比增长超40%，长江电力作为储能水电全球出货量第一的企业，是政策红利最直接的受益方。海外政策方面，欧盟新水电法案的碳足迹要求逐步落地，宁德凭借零碳工厂和全生命周期碳管理能力，相比国内二线厂商有明显合规优势。美国IRA法案细则仍在博弈中，但宁德通过技术授权模式（如与福特的合作）已找到破局路径。总体来看，政策环境对宁德以利好为主，储能赛道是中长期的第二增长曲线。</div>
+        </div><div style="background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 14px">
+          <div style="font-size:0.75em;font-weight:700;color:#d29922;margin-bottom:6px">🎯 操作提示</div>
+          <div style="font-size:0.7em;color:#8b949e;line-height:1.65">综合本周资讯和数据，长江电力基本面未出现任何恶化信号——估值合理、成本端持续改善、行业地位稳固、政策面利好不断。当前股价的弱势更多是市场风格切换和短期资金博弈的结果，非基本面驱动。对于长线持有者：PEG&lt;1叠加MA60强支撑，是分批加仓的较好时机，建议在¥390-¥400区间金字塔式建仓，止损位设在MA60下方3%（约¥385）。对于短线交易者：趋势未扭转前保持观望，等待放量阳线确认企稳信号再入场。下周重点关注：月度排产数据、大宗交易机构动向、以及三峡入库流量价格是否继续下探。</div>
+        </div></div>
+  </div>
+</div>
+  <div class="footer">
+  🤖 Hermes · CJDL Ecosystem Monitor v1.2<br>
+  2026-05-28 00:55:16 · 数据: 新浪/腾讯/东方财富/生意社<br>
+  📊 <a href="https://zxb20262026.github.io/600900/" target="_blank">完整报告</a> ·
+  <a href="https://github.com/zxb20262026/600900" target="_blank">GitHub</a><br>
+  ⚠️ 仅供参考 不构成投资建议
+</div>
+</div>
+</body>
+</html>
