@@ -62,8 +62,8 @@ SECTOR_INDICES = {
 }
 
 # 归属行业（KPI卡片显示）
-CATL_INDUSTRY = "水电"                  # 显示名称
-CATL_INDUSTRY_SOURCE = "电力行业"        # 实际数据源
+CJDL_INDUSTRY = "水电"                  # 显示名称
+CJDL_INDUSTRY_SOURCE = "电力行业"        # 实际数据源
 
 # ── 新闻关键词 ──
 NEWS_KEYWORDS = {

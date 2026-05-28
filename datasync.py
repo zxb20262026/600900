@@ -89,19 +89,19 @@ def fetch_catl_kline(days=60):
     except: return []
 
 
-def # fetch_hk_kline(days=750):
-    """CJDL H股(00750)历史K线"""
-    try:
-        d = json.loads(raw)
-        result = []
-        for k in klines:
-            parts = k.split(",") if isinstance(k, str) else k
-            if len(parts) >= 6:
-                result.append({"date": parts[0], "open": float(parts[1]), "close": float(parts[2]),
-                               "high": float(parts[3]), "low": float(parts[4]),
-                               "volume": float(parts[5]) if parts[5] else 0})
-        return result
-    except: return []
+# def fetch_hk_kline(days=750):
+#     """CJDL H股(00750)历史K线"""
+#     try:
+#         d = json.loads(raw)
+#         result = []
+#         for k in klines:
+#             parts = k.split(",") if isinstance(k, str) else k
+#             if len(parts) >= 6:
+#                 result.append({"date": parts[0], "open": float(parts[1]), "close": float(parts[2]),
+#                                "high": float(parts[3]), "low": float(parts[4]),
+#                                "volume": float(parts[5]) if parts[5] else 0})
+#         return result
+#     except: return []
 
 
 def compute_ah_history(hk_kline, a_kline, fx_rate=0.92):
@@ -687,7 +687,7 @@ def collect_all(verbose=True):
     data["catl_fund"] = fetch_catl_fund_flow()
     data["catl_kline"] = fetch_catl_kline(90)  # 90天用于技术面分析
     data["catl_kline_long"] = fetch_catl_kline(750)  # 长周期用于AH溢价历史
-    data["hk_kline"] = # fetch_hk_kline(750)  # H股上市以来
+    data["hk_kline"] = []  # H股不适用(750)  # H股上市以来
     data["market"] = fetch_market_indices()
     if verbose:
         a = data["catl_a"]
