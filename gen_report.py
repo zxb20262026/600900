@@ -703,8 +703,8 @@ def build_valuation(data):
         ("PE(TTM)", pe_ttm, "~20%", "偏低估" if pe_ttm and pe_ttm < 30 else "合理", "#3fb950"),
         ("PB", pb, "~15%", "偏低估" if pb and pb < 8 else "合理", "#3fb950"),
         ("PS(TTM)", ps_est, "—", "中性", "#8b949e"),
-        ("PEG(40%增速)", peg, "—", "显著低估" if peg and peg < 0.8 else "低估" if peg and peg < 1 else "合理", "#3fb950"),
-        ("PEG(25%保守)", round(pe_ttm/25,2) if pe_ttm else None, "—", "低估" if pe_ttm and pe_ttm/25 < 1 else "合理", "#3fb950"),
+        ("PEG(8%增速)", peg, "—", "低估" if peg and peg < PEG_UNDERVALUE else "偏高" if peg and peg > PEG_OVERVALUE else "合理", "#3fb950" if peg and peg < PEG_OVERVALUE else "#f85149"),
+        ("PEG(5%保守)", round(pe_ttm/5,2) if pe_ttm else None, "—", "偏高" if pe_ttm and pe_ttm/5 > PEG_OVERVALUE else "合理", "#d29922"),
     ]:
         water_rows += f'<tr><td>{label}</td><td style="color:{clr};font-weight:600">{fill(v_val)}</td><td>{pct}</td><td style="color:{clr}">{judge}</td></tr>'
 
@@ -1181,6 +1181,13 @@ def build_ah_analysis(data):
     """AH溢价分析 — 6卡片 + 历史走势图 + 7天表 + 深度解读"""
     a = data.get("catl_a", {})
     h = data.get("catl_h", {})
+    a_price = a.get("price") if a else None
+    h_price = h.get("price") if h else None
+    
+    # 无H股时跳过
+    if not h_price:
+        return '<div class="module"><div class="module-hdr"><span class="icon">💱</span><h2>AH溢价分析</h2></div><div style="text-align:center;color:#6e7681;padding:30px">长江电力无H股上市，AH溢价分析不适用</div></div>'
+    
     ah_premium = data.get("ah_premium")
     ah_mean30 = data.get("ah_mean30")
     ah_history = data.get("ah_history", [])
