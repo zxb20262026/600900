@@ -244,7 +244,36 @@ tr:hover{background:rgba(88,166,255,0.03)}
 .bt-deep{padding:8px 0}
 .bt-deep li{font-size:0.78em;color:#c9d1d9;line-height:1.7;padding:3px 0;padding-left:14px;position:relative;list-style:none}
 .bt-deep li::before{content:'\\2022';position:absolute;left:0;color:#484f58}
-@media(max-width:600px){.bt-cards{grid-template-columns:repeat(2,1fr)}}</style>
+@media(max-width:600px){.bt-cards{grid-template-columns:repeat(2,1fr)}}
+/* ── 股息率模块 ── */
+.div-yield{background:#131a26;border:1px solid #1e2d45;border-radius:12px;padding:18px;margin-bottom:14px}
+.div-yield .dy-header,.inflow-mod .im-header,.north-mod .nm-header,.ff5-mod .ff5-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.div-yield .dy-header h2,.inflow-mod .im-header h2,.north-mod .nm-header h2,.ff5-mod .ff5-header h2{font-size:0.95em;font-weight:600;color:#e6edf3;margin:0}
+.dy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.dy-item,.north-item{background:#0d1117;border-radius:8px;padding:12px;text-align:center}
+.dy-item .dy-lbl,.north-item .ni-lbl{font-size:0.68em;color:#8b949e;margin-bottom:4px}
+.dy-item .dy-val,.north-item .ni-val{font-size:1.4em;font-weight:700;margin-bottom:2px}
+.dy-item .dy-note,.north-item .ni-note{font-size:0.7em;color:#6e7681}
+.dy-spread{font-size:0.78em;padding:10px 14px;border-radius:8px;margin-top:10px;text-align:center;line-height:1.5;font-weight:600}
+.dy-spread.good{background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:#3fb950}
+.dy-spread.ok{background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:#58a6ff}
+.dy-spread.warn{background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3);color:#d29922}
+/* ── 来水趋势 ── */
+.inflow-mod,.north-mod,.ff5-mod{background:#131a26;border:1px solid #1e2d45;border-radius:12px;padding:18px;margin-bottom:14px}
+.inflow-bars,.ff5-bars{display:flex;align-items:flex-end;gap:6px;height:90px;margin:10px 0;padding:0 2px}
+.inflow-bar,.ff5-bar{flex:1;border-radius:4px 4px 0 0;position:relative;min-width:18px}
+.inflow-bar .bar-val,.ff5-bar .ff5-val{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:0.6em;white-space:nowrap;color:#8b949e;margin-bottom:2px}
+.inflow-bar .bar-date,.ff5-bar .ff5-date{position:absolute;top:100%;left:50%;transform:translateX(-50%);font-size:0.58em;color:#6e7681;margin-top:4px;white-space:nowrap}
+.inflow-bar.high{background:linear-gradient(to top,#0d3320,#2ea043,#3fb950)}
+.inflow-bar.medium{background:linear-gradient(to top,#0d1f3d,#1e3a5f,#58a6ff)}
+.inflow-bar.low{background:linear-gradient(to top,#3d1a10,#8b4513,#d29922)}
+.ff5-bar.in{background:linear-gradient(to top,#0d3320,#3fb950)}
+.ff5-bar.out{background:linear-gradient(to top,#3d1313,#f85149)}
+.ff5-summary{display:flex;justify-content:space-between;font-size:0.72em;color:#8b949e;padding-top:8px;border-top:1px solid #1e2d45;margin-top:8px}
+/* ── 北向资金 ── */
+.north-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.north-no-data{font-size:0.8em;color:#6e7681;text-align:center;padding:16px}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -264,6 +293,32 @@ tr:hover{background:rgba(88,166,255,0.03)}
 买入线 ¥12 (差57.7%)</div></div><div class="kpi-card"><div class="kpi-label">AH溢价</div><div class="kpi-value" style="color:#f85149">—</div><div class="kpi-note">—</div></div><div class="kpi-card"><div class="kpi-label">成交额</div><div class="kpi-value" style="color:#8b949e">12亿</div><div class="kpi-note">成交额12亿 缩量 · 量能33.7x均量</div></div><div class="kpi-card"><div class="kpi-label">主力净流入</div><div class="kpi-value" style="color:#8b949e">—</div><div class="kpi-note">数据暂缺</div></div><div class="kpi-card"><div class="kpi-label">三峡入库流量期货</div><div class="kpi-value" style="color:#f85149">16.8万</div><div class="kpi-change" style="color:#f85149">+3.0%</div><div class="kpi-note">三峡入库流量16.8万/吨 成本压力</div></div><div class="kpi-card"><div class="kpi-label">行业(水电)</div><div class="kpi-value" style="color:#3fb950">-0.4%</div><div class="kpi-note">数据源: 电力行业指数
 与行业同步</div></div><div class="kpi-card"><div class="kpi-label">MA60支撑</div><div class="kpi-value" style="color:#58a6ff">¥27</div><div class="kpi-note">MA60=¥27 距+3.26%</div></div></div>
   <div class="core-banner" style="border-color:#f85149">PEG 2.37 偏高 · 三峡入库流量16.76万/吨 成本压力</div>
+  <div class="div-yield">
+      <div class="dy-header"><span class="icon">💰</span><h2>实时股息率 · 分红回报</h2></div>
+      <div class="dy-grid">
+        <div class="dy-item">
+          <div class="dy-lbl">当前股息率</div>
+          <div class="dy-val" style="color:#58a6ff">3.01%</div>
+          <div class="dy-note">较好</div>
+        </div>
+        <div class="dy-item">
+          <div class="dy-lbl">每股分红(年报)</div>
+          <div class="dy-val" style="color:#c9d1d9">¥0.84</div>
+          <div class="dy-note">2024年度利润分配</div>
+        </div>
+        <div class="dy-item">
+          <div class="dy-lbl">10年国债收益率</div>
+          <div class="dy-val" style="color:#58a6ff">1.75%</div>
+          <div class="dy-note">无风险收益基准</div>
+        </div>
+        <div class="dy-item">
+          <div class="dy-lbl">股息 vs 国债利差</div>
+          <div class="dy-val" style="color:#3fb950">+1.26%</div>
+          <div class="dy-note">安全边际指标</div>
+        </div>
+      </div>
+      <div class="dy-spread ok">📊 股息率3.01%高于国债1.75%，利差1.26%，提供了一定的安全边际。作为防御性配置，当前股息回报可观。</div>
+    </div>
   <div class="summary-panel">
   <div class="sp-title">📋 数据变化总结</div>
   <div class="summary-item critical"><span class="si-icon">📊</span><span class="si-content"><span class="hl-red">PEG=2.37 偏高</span>，距买入区间还需跌57.7%至 ¥12 · PE 18.9x 偏低</span></div><div class="summary-item info"><span class="si-icon">📈</span><span class="si-content"><span class="hl-yellow">逆势上涨0.1% (大盘-0.43%)</span> → 个股独立利好驱动</span></div><div class="summary-item info"><span class="si-icon">📐</span><span class="si-content">MA60=¥27 (距+3.26%)</span></div><div class="summary-item important"><span class="si-icon">⛏️</span><span class="si-content">三峡入库流量16.8万/吨 成本压力 → 成本端影响</span></div><div class="summary-item info"><span class="si-icon">🏭</span><span class="si-content">与行业同步 (行业水电 -0.4%)</span></div><div class="summary-item info"><span class="si-icon">💼</span><span class="si-content">成本¥25 浮盈11.6%</span></div>
@@ -488,6 +543,11 @@ tr:hover{background:rgba(88,166,255,0.03)}
   <table class="nf-table"><tr><th>日期</th><th>成交价</th><th>成交量(万股)</th><th>成交额(万)</th><th>买方</th><th>卖方</th></tr><tr><td>2026-06-03</td><td>¥426.42<span style="font-size:0.7em;color:#3fb950">(+1427.8%)</span></td><td>2</td><td>640</td><td style="color:#c9d1d9;font-size:0.85em">中信证券股份有限公司上海…</td><td style="color:#f85149;font-size:0.85em">机构专用</td></tr><tr><td>2026-05-27</td><td>¥390.43<span style="font-size:0.7em;color:#3fb950">(+1298.9%)</span></td><td>49</td><td>19131</td><td style="color:#c9d1d9;font-size:0.85em">中信证券股份有限公司上海…</td><td style="color:#c9d1d9;font-size:0.85em">华泰证券股份有限公司上海…</td></tr><tr><td>2026-05-12</td><td>¥431.25<span style="font-size:0.7em;color:#3fb950">(+1445.1%)</span></td><td>12</td><td>5069</td><td style="color:#3fb950;font-size:0.85em">机构专用</td><td style="color:#c9d1d9;font-size:0.85em">华泰证券股份有限公司上海…</td></tr></table>
   <ul class="nf-deep"><li>📈 近期3笔大宗成交价高于现价（溢价成交），机构认可当前估值</li></ul>
 </div>
+  <div class="north-mod"><div class="nm-header"><span class="icon">🌍</span><h2>北向资金追踪</h2></div><p class="north-no-data">📡 北向数据接口暂不可用，待恢复后将自动显示外资对长电的配置变化</p></div>
+  <div class="ff5-mod">
+      <div class="ff5-header"><span class="icon">📈</span><h2>主力资金流速</h2></div>
+      <p class="north-no-data">📡 资金流数据接口暂不可用。恢复后将自动显示5日主力资金流速图。当日主力数据请参考上方KPI仪表盘。</p>
+    </div>
   <div class="module">
   <div class="module-hdr"><span class="icon">📊</span><h2>财务面追踪</h2></div>
   <div class="fin-grid">
@@ -550,6 +610,16 @@ tr:hover{background:rgba(88,166,255,0.03)}
       <li>📅 每月11日左右发布上月数据，需手动更新</li>
     </ul>
 </div>
+  <div class="inflow-mod">
+      <div class="im-header"><span class="icon">🌊</span><h2>来水量趋势 · 三峡入库流量</h2></div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:8px">
+        <div><span style="color:#8b949e;font-size:0.7em">当日</span><br><span style="font-size:1.3em;font-weight:700;color:#58a6ff">25000</span> <span style="font-size:0.7em;color:#6e7681">m³/s</span></div>
+        <div><span style="color:#8b949e;font-size:0.7em">近3日趋势</span><br><span style="font-size:1.1em;font-weight:600;color:#8b949e">—</span></div>
+        <div><span style="color:#8b949e;font-size:0.7em">半年水位</span><br><span style="font-size:0.85em;color:#c9d1d9">36.4</span></div>
+      </div>
+      <p style="font-size:0.78em;color:#6e7681">积累数据中，需3天以上显示趋势</p>
+      <p style="font-size:0.7em;color:#6e7681;margin-top:8px;line-height:1.5">💡 三峡入库流量是长江电力发电量的核心驱动指标。丰水期(5-10月)日均3-6万m³/s，枯水期(11-4月)0.5-2万m³/s。流量越高→发电量越大→业绩越好。</p>
+    </div>
   <div class="module">
   <div class="module-hdr"><span class="icon">⛏️</span><h2>上游原材料雷达</h2><span class="status" style="background:rgba(88,166,255,0.1);color:#58a6ff">平均 -1.0%</span></div>
   <div class="mat-grid"><div class="mat-card"><div class="name">三峡入库流量</div><div class="price">25000m³/s</div><div class="trend" style="background:rgba(88,166,255,0.1);color:#58a6ff">半年P36% · 中部</div></div><div class="mat-card"><div class="name">上网电价(含税)</div><div class="price">0.28元/kWh</div><div class="trend" style="background:rgba(88,166,255,0.1);color:#58a6ff">半年P30% · 偏低</div></div><div class="mat-card"><div class="name">资产负债率</div><div class="price">58.0%</div><div class="trend" style="background:rgba(88,166,255,0.1);color:#58a6ff">半年P30% · 偏低</div></div></div>
@@ -565,28 +635,7 @@ tr:hover{background:rgba(88,166,255,0.03)}
   
   <div class="module">
   <div class="module-hdr"><span class="icon">📰</span><h2>本周重大资讯 (5/19-5/25)</h2></div>
-  <div style="margin-bottom:10px"><span style="font-size:0.78em;font-weight:600;color:#f85149">🏢 CJDL动态</span>
-            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #f85149;border-radius:4px">
-              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
-                <a href="http://finance.eastmoney.com/a/202606033759223039.html" target="_blank" style="color:#e6edf3;text-decoration:none">长江电力：公司积极稳妥推进抽水蓄能业务发展</a>
-              </div>
-              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">证券日报网讯 6月3日，长江电力在互动平台回答投资者提问时表示，公司积极稳妥推进抽水蓄能业务发展，相关工作正按计划有序开展。关于整体业务规划，具体信息请以公司在法定平台发布的公告及定期报告为准。</div>
-              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-06-03 · 证券日报</div>
-            </div>
-            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #f85149;border-radius:4px">
-              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
-                <a href="http://finance.eastmoney.com/a/202606033759367571.html" target="_blank" style="color:#e6edf3;text-decoration:none">长江电力：三峡电站首套主轴密封智能监测系统正式投运</a>
-              </div>
-              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">6月3日，长江电力发布消息称，三峡电站首套主轴密封智能监测系统于近日投入运行，标志着长江电力在大型水电机组关键部件状态监测与智慧运维领域取得显著进展。</div>
-              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-06-03 · 界面新闻</div>
-            </div>
-            <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #f85149;border-radius:4px">
-              <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
-                <a href="http://finance.eastmoney.com/a/202605273751596243.html" target="_blank" style="color:#e6edf3;text-decoration:none">长江电力5月27日大宗交易成交352.82万元</a>
-              </div>
-              <div style="font-size:0.7em;color:#6e7681;line-height:1.4">据天眼查APP显示，中国长江电力股份有限公司成立于2002年11月04日，注册资本2446821.7716万人民币。</div>
-              <div style="font-size:0.65em;color:#484f58;margin-top:3px">2026-05-27 · 证券时报网</div>
-            </div></div><div style="margin-bottom:10px"><span style="font-size:0.78em;font-weight:600;color:#d29922">📊 机构观点</span>
+  <div style="margin-bottom:10px"><span style="font-size:0.78em;font-weight:600;color:#d29922">📊 机构观点</span>
             <div style="padding:8px 10px;margin-bottom:6px;background:rgba(255,255,255,0.02);border-left:3px solid #d29922;border-radius:4px">
               <div style="font-size:0.82em;font-weight:600;margin-bottom:3px">
                 <a href="http://finance.eastmoney.com/a/202606033759223039.html" target="_blank" style="color:#e6edf3;text-decoration:none">长江电力：公司积极稳妥推进抽水蓄能业务发展</a>
@@ -633,7 +682,7 @@ tr:hover{background:rgba(88,166,255,0.03)}
     <div style="font-size:0.82em;font-weight:600;color:#d29922;margin-bottom:10px">📋 本周资讯对长江电力的影响评估</div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px"><div style="background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 14px">
           <div style="font-size:0.75em;font-weight:700;color:#f85149;margin-bottom:6px">📈 股价反应</div>
-          <div style="font-size:0.7em;color:#8b949e;line-height:1.65">本周涨1日，累计+0.0%，短线多头占优。从资讯面看，长江电力本周有多条公司动态发布，市场短期更多受资金面和板块轮动影响。大盘方面，新能源板块整体表现弱于上证指数，板块内部轮动加速，龙头股弹性逐步恢复。</div>
+          <div style="font-size:0.7em;color:#8b949e;line-height:1.65">本周涨1日，累计+0.0%，短线多头占优。从资讯面看，本周长江电力公司层面暂无重大公告，市场短期更多受资金面和板块轮动影响。大盘方面，新能源板块整体表现弱于上证指数，板块内部轮动加速，龙头股弹性逐步恢复。</div>
         </div><div style="background:rgba(255,255,255,0.02);border:1px solid #1e2d45;border-radius:8px;padding:12px 14px">
           <div style="font-size:0.75em;font-weight:700;color:#d29922;margin-bottom:6px">💰 估值影响</div>
           <div style="font-size:0.7em;color:#8b949e;line-height:1.65">当前PE(TTM)=23.6x，PEG=2.37，处于合理区间。本周多家机构发布研报，多数维持「买入」评级，目标价在¥450-500区间，较当前价有15%-25%上行空间。伴随PE持续压缩，市场给予长江电力的成长性溢价几乎消失，估值已趋于合理，向上弹性需靠业绩催化。关注下周即将披露的月度排产数据，若超预期将直接催化估值修复。</div>
@@ -654,7 +703,7 @@ tr:hover{background:rgba(88,166,255,0.03)}
 </div>
   <div class="footer">
   🤖 Hermes · CJDL Ecosystem Monitor v1.2<br>
-  2026-06-04 11:40:48 · 数据: 新浪/腾讯/东方财富/生意社<br>
+  2026-06-04 12:04:32 · 数据: 新浪/腾讯/东方财富/生意社<br>
   📊 <a href="https://zxb20262026.github.io/600900/" target="_blank">完整报告</a> ·
   <a href="https://github.com/zxb20262026/600900" target="_blank">GitHub</a><br>
   ⚠️ 仅供参考 不构成投资建议
