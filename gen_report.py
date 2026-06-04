@@ -272,7 +272,36 @@ tr:hover{background:rgba(88,166,255,0.03)}
 .bt-deep{padding:8px 0}
 .bt-deep li{font-size:0.78em;color:#c9d1d9;line-height:1.7;padding:3px 0;padding-left:14px;position:relative;list-style:none}
 .bt-deep li::before{content:'\\2022';position:absolute;left:0;color:#484f58}
-@media(max-width:600px){.bt-cards{grid-template-columns:repeat(2,1fr)}}"""
+@media(max-width:600px){.bt-cards{grid-template-columns:repeat(2,1fr)}}
+/* ── 股息率模块 ── */
+.div-yield{background:#131a26;border:1px solid #1e2d45;border-radius:12px;padding:18px;margin-bottom:14px}
+.div-yield .dy-header,.inflow-mod .im-header,.north-mod .nm-header,.ff5-mod .ff5-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.div-yield .dy-header h2,.inflow-mod .im-header h2,.north-mod .nm-header h2,.ff5-mod .ff5-header h2{font-size:0.95em;font-weight:600;color:#e6edf3;margin:0}
+.dy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.dy-item,.north-item{background:#0d1117;border-radius:8px;padding:12px;text-align:center}
+.dy-item .dy-lbl,.north-item .ni-lbl{font-size:0.68em;color:#8b949e;margin-bottom:4px}
+.dy-item .dy-val,.north-item .ni-val{font-size:1.4em;font-weight:700;margin-bottom:2px}
+.dy-item .dy-note,.north-item .ni-note{font-size:0.7em;color:#6e7681}
+.dy-spread{font-size:0.78em;padding:10px 14px;border-radius:8px;margin-top:10px;text-align:center;line-height:1.5;font-weight:600}
+.dy-spread.good{background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:#3fb950}
+.dy-spread.ok{background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:#58a6ff}
+.dy-spread.warn{background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3);color:#d29922}
+/* ── 来水趋势 ── */
+.inflow-mod,.north-mod,.ff5-mod{background:#131a26;border:1px solid #1e2d45;border-radius:12px;padding:18px;margin-bottom:14px}
+.inflow-bars,.ff5-bars{display:flex;align-items:flex-end;gap:6px;height:90px;margin:10px 0;padding:0 2px}
+.inflow-bar,.ff5-bar{flex:1;border-radius:4px 4px 0 0;position:relative;min-width:18px}
+.inflow-bar .bar-val,.ff5-bar .ff5-val{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:0.6em;white-space:nowrap;color:#8b949e;margin-bottom:2px}
+.inflow-bar .bar-date,.ff5-bar .ff5-date{position:absolute;top:100%;left:50%;transform:translateX(-50%);font-size:0.58em;color:#6e7681;margin-top:4px;white-space:nowrap}
+.inflow-bar.high{background:linear-gradient(to top,#0d3320,#2ea043,#3fb950)}
+.inflow-bar.medium{background:linear-gradient(to top,#0d1f3d,#1e3a5f,#58a6ff)}
+.inflow-bar.low{background:linear-gradient(to top,#3d1a10,#8b4513,#d29922)}
+.ff5-bar.in{background:linear-gradient(to top,#0d3320,#3fb950)}
+.ff5-bar.out{background:linear-gradient(to top,#3d1313,#f85149)}
+.ff5-summary{display:flex;justify-content:space-between;font-size:0.72em;color:#8b949e;padding-top:8px;border-top:1px solid #1e2d45;margin-top:8px}
+/* ── 北向资金 ── */
+.north-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.north-no-data{font-size:0.8em;color:#6e7681;text-align:center;padding:16px}
+"""
 
 
 # ═══════════════════════════════════════════
@@ -2085,6 +2114,195 @@ def build_footer(data):
 </div>'''
 
 
+
+
+def build_dividend_yield(data):
+    """实时股息率 — 长电核心吸引力"""
+    div = data.get("summaries", {}).get("dividend") or data.get("dividend") or {}
+    a = data.get("catl_a", {})
+    price = a.get("price") if a else None
+    
+    if not div or not price:
+        return '<div class="div-yield"><div class="dy-header"><span class="icon">💰</span><h2>实时股息率</h2></div><p class="north-no-data">数据采集中</p></div>'
+    
+    y = div["yield"]
+    dps = div["dps"]
+    bond = div["bond_10y"]
+    spread = div["spread"]
+    
+    if y >= 3.5:
+        spread_cls = "good"
+        insight = f"💰 股息率{y}%远高于10年国债{bond}%，利差{spread}%，极具安全边际。长电的分红稳定性在A股名列前茅，当前价位适合追求稳定现金流的长期投资者。"
+    elif y >= 2.5:
+        spread_cls = "ok"
+        insight = f"📊 股息率{y}%高于国债{bond}%，利差{spread}%，提供了一定的安全边际。作为防御性配置，当前股息回报可观。"
+    else:
+        spread_cls = "warn"
+        insight = f"⚠️ 股息率{y}%低于理想水平，利差仅{spread}%。如果主要看重分红回报，当前价位缺乏吸引力，建议等待回调。"
+    
+    return f'''<div class="div-yield">
+      <div class="dy-header"><span class="icon">💰</span><h2>实时股息率 · 分红回报</h2></div>
+      <div class="dy-grid">
+        <div class="dy-item">
+          <div class="dy-lbl">当前股息率</div>
+          <div class="dy-val" style="color:{div['color']}">{y}%</div>
+          <div class="dy-note">{div["level"]}</div>
+        </div>
+        <div class="dy-item">
+          <div class="dy-lbl">每股分红(年报)</div>
+          <div class="dy-val" style="color:#c9d1d9">¥{dps}</div>
+          <div class="dy-note">2024年度利润分配</div>
+        </div>
+        <div class="dy-item">
+          <div class="dy-lbl">10年国债收益率</div>
+          <div class="dy-val" style="color:#58a6ff">{bond}%</div>
+          <div class="dy-note">无风险收益基准</div>
+        </div>
+        <div class="dy-item">
+          <div class="dy-lbl">股息 vs 国债利差</div>
+          <div class="dy-val" style="color:{"#3fb950" if spread>0 else "#f85149"}">{spread:+.2f}%</div>
+          <div class="dy-note">安全边际指标</div>
+        </div>
+      </div>
+      <div class="dy-spread {spread_cls}">{insight}</div>
+    </div>'''
+
+
+def build_inflow_trend(data):
+    """来水量趋势图 — 三峡入库流量多日对比"""
+    mats = data.get("materials", {})
+    inflow = mats.get("三峡入库流量", {})
+    ih = data.get("summaries", {}).get("inflow_hist") or data.get("inflow_hist") or []
+    
+    current = inflow.get("price") if inflow else None
+    unit = inflow.get("unit", "m³/s") if inflow else "m³/s"
+    pos_text = inflow.get("position", "") if inflow else ""
+    
+    bars_html = ""
+    if len(ih) >= 2:
+        max_val = max(d.get("value", 0) for d in ih)
+        min_val = min(d.get("value", 0) for d in ih)
+        range_val = max(max_val - min_val, 1)
+        for d in ih[-8:]:
+            v = d.get("value", 0)
+            h_pct = max((v - min_val) / range_val * 70 + 15, 8) if range_val > 0 else 50
+            if v >= 50000: cls = "high"
+            elif v >= 25000: cls = "medium"
+            else: cls = "low"
+            date_short = d.get("date", "")[5:]
+            bars_html += f'<div class="inflow-bar {cls}" style="height:{h_pct}%"><div class="bar-val">{v:.0f}</div><div class="bar-date">{date_short}</div></div>'
+    
+    if len(ih) >= 3:
+        recent_vals = [d["value"] for d in ih[-3:]]
+        trend = "↑ 上升" if recent_vals[-1] > recent_vals[0] else "↓ 下降" if recent_vals[-1] < recent_vals[0] else "→ 持平"
+        trend_clr = "#3fb950" if "上升" in trend else "#d29922" if "持平" in trend else "#f85149"
+    else:
+        trend = "—"
+        trend_clr = "#8b949e"
+    
+    return f'''<div class="inflow-mod">
+      <div class="im-header"><span class="icon">🌊</span><h2>来水量趋势 · 三峡入库流量</h2></div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:8px">
+        <div><span style="color:#8b949e;font-size:0.7em">当日</span><br><span style="font-size:1.3em;font-weight:700;color:#58a6ff">{f"{current:.0f}" if current else "—"}</span> <span style="font-size:0.7em;color:#6e7681">{unit}</span></div>
+        <div><span style="color:#8b949e;font-size:0.7em">近3日趋势</span><br><span style="font-size:1.1em;font-weight:600;color:{trend_clr}">{trend}</span></div>
+        <div><span style="color:#8b949e;font-size:0.7em">半年水位</span><br><span style="font-size:0.85em;color:#c9d1d9">{pos_text}</span></div>
+      </div>
+      {f'<div class="inflow-bars">{bars_html}</div>' if bars_html else '<p style="font-size:0.78em;color:#6e7681">积累数据中，需3天以上显示趋势</p>'}
+      <p style="font-size:0.7em;color:#6e7681;margin-top:8px;line-height:1.5">💡 三峡入库流量是长江电力发电量的核心驱动指标。丰水期(5-10月)日均3-6万m³/s，枯水期(11-4月)0.5-2万m³/s。流量越高→发电量越大→业绩越好。</p>
+    </div>'''
+
+
+def build_north_tracker(data):
+    """北向资金追踪 — 多数据源降级"""
+    nf = data.get("summaries", {}).get("north_flow") or data.get("north_flow_v2") or {}
+    
+    if nf.get("status") == "no_data" or not nf.get("status"):
+        return '<div class="north-mod"><div class="nm-header"><span class="icon">🌍</span><h2>北向资金追踪</h2></div><p class="north-no-data">📡 北向数据接口暂不可用，待恢复后将自动显示外资对长电的配置变化</p></div>'
+    
+    html = '<div class="north-mod"><div class="nm-header"><span class="icon">🌍</span><h2>北向资金追踪</h2></div>'
+    
+    recent = nf.get("recent", [])
+    if recent:
+        html += '<div class="north-grid">'
+        for r in recent[-4:]:
+            net = r.get("net", 0)
+            clr = "#3fb950" if net > 0 else "#f85149" if net < 0 else "#8b949e"
+            sign = "+" if net > 0 else ""
+            date_short = r.get("date", "")[5:]
+            html += f'<div class="north-item"><div class="ni-lbl">{date_short}</div><div class="ni-val" style="color:{clr}">{sign}{net:.1f}亿</div><div class="ni-note">北向净额</div></div>'
+        html += '</div>'
+        
+        today = nf.get("today") or recent[-1]
+        if today:
+            net_today = today.get("net", 0)
+            clr = "#3fb950" if net_today > 0 else "#f85149"
+            direction = "净流入" if net_today > 0 else "净流出"
+            html += f'<p style="font-size:0.72em;color:{clr};margin-top:8px;text-align:center">📊 今日北向资金{abs(net_today):.1f}亿{direction}{"✅" if net_today>0 else "⚠️"}</p>'
+    else:
+        html += '<p class="north-no-data">暂无北向资金数据</p>'
+    
+    html += '</div>'
+    return html
+
+
+def build_fund_flow_trend(data):
+    """主力资金5日流速图"""
+    fund = data.get("catl_fund") or {}
+    ff5 = data.get("summaries", {}).get("fund_flow_5d") or data.get("fund_flow_5d") or []
+    
+    if ff5 and len(ff5) >= 3:
+        nets = [d["main_net"] for d in ff5 if d.get("main_net") is not None]
+        if not nets:
+            return ""
+        max_abs = max(abs(v) for v in nets) if nets else 1
+        max_abs = max(max_abs, 0.5)
+        
+        bars_html = ""
+        for d in ff5:
+            net = d.get("main_net", 0)
+            h_pct = max(abs(net) / max_abs * 80, 8)
+            cls = "in" if net >= 0 else "out"
+            date_short = d.get("date", "")[5:] if d.get("date") else "?"
+            sign = "+" if net >= 0 else ""
+            bars_html += f'<div class="ff5-bar {cls}" style="height:{h_pct}%;flex:1"><div class="ff5-val" style="color:{"#3fb950" if net>=0 else "#f85149"}">{sign}{net:.1f}</div><div class="ff5-date">{date_short}</div></div>'
+        
+        total_5d = data.get("summaries", {}).get("fund_5d_total") or sum(nets)
+        direction = "净流入" if total_5d > 0 else "净流出"
+        clr = "#3fb950" if total_5d > 0 else "#f85149"
+        
+        return f"""<div class="ff5-mod">
+      <div class="ff5-header"><span class="icon">📈</span><h2>主力资金5日流速</h2></div>
+      <div class="ff5-bars">{bars_html}</div>
+      <div class="ff5-summary">
+        <span>5日合计: <strong style="color:{clr}">{total_5d:+.1f}亿 {direction}</strong></span>
+        <span>尺度: ±{max_abs:.1f}亿/日</span>
+      </div>
+      <p style="font-size:0.68em;color:#6e7681;margin-top:6px">💡 主力资金=超大单+大单净额，反映机构动向。连续净流入/流出比单日更有指示意义。</p>
+    </div>"""
+    
+    five_day = fund.get("five_day", 0)
+    ten_day = fund.get("ten_day", 0)
+    if five_day or ten_day:
+        f5 = (five_day or 0) / 1e4
+        f10 = (ten_day or 0) / 1e4
+        clr5 = "#3fb950" if f5 > 0 else "#f85149"
+        clr10 = "#3fb950" if f10 > 0 else "#f85149"
+        return f"""<div class="ff5-mod">
+      <div class="ff5-header"><span class="icon">📈</span><h2>主力资金流速</h2></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div class="north-item" style="flex:1"><div class="ni-lbl">5日主力净流入</div><div class="ni-val" style="color:{clr5};font-size:1.1em">{f5:+.1f}亿</div></div>
+        <div class="north-item" style="flex:1"><div class="ni-lbl">10日主力净流入</div><div class="ni-val" style="color:{clr10};font-size:1.1em">{f10:+.1f}亿</div></div>
+        <div class="north-item" style="flex:1"><div class="ni-lbl">当日主力净额</div><div class="ni-val" style="color:{clr5};font-size:1.1em">{(fund.get('main_net',0) or 0)/1e4:+.1f}亿</div></div>
+      </div>
+      <p style="font-size:0.68em;color:#6e7681;margin-top:8px">💡 主力资金=超大单+大单净额。正值=机构净买入，负值=机构净卖出。</p>
+    </div>"""
+    
+    # 所有数据源均不可用 — 显示占位
+    return """<div class="ff5-mod">
+      <div class="ff5-header"><span class="icon">📈</span><h2>主力资金流速</h2></div>
+      <p class="north-no-data">📡 资金流数据接口暂不可用。恢复后将自动显示5日主力资金流速图。当日主力数据请参考上方KPI仪表盘。</p>
+    </div>"""
+
 def generate(data):
     return f'''<!DOCTYPE html>
 <html lang="zh-CN">
@@ -2099,6 +2317,7 @@ def generate(data):
   {build_header(data)}
   {build_kpi_dashboard(data)}
   {build_core_banner(data)}
+  {build_dividend_yield(data)}
   {build_summary_panel(data)}
   {build_trading_plan(data)}
   {build_week_review(data)}
@@ -2108,8 +2327,11 @@ def generate(data):
   {build_peg_analysis(data)}
   {build_analyst_consensus(data)}
   {build_big_money_flow(data)}
+  {build_north_tracker(data)}
+  {build_fund_flow_trend(data)}
   {build_financial_trends(data)}
   {build_battery_install(data)}
+  {build_inflow_trend(data)}
   {build_upstream(data)}
   {build_sectors(data)}
   {build_fund_flow(data)}
