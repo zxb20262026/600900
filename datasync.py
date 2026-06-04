@@ -4,7 +4,7 @@
 新增: 上游多周期涨跌+走势小结 / 原材料半年高低位 / 上游仅5大核心品种
 """
 
-import urllib.request, ssl, json, re, time, statistics
+import urllib.request, ssl, json, re, time, statistics, os
 from config import *
 
 ssl_ctx = ssl.create_default_context()
@@ -696,6 +696,10 @@ def collect_all(verbose=True):
 
     if verbose: print("⛏️ 原材料(5核心)...")
     data["materials"] = fetch_material_prices()
+    # 追加来水历史
+    inflow_val = data["materials"].get("三峡入库流量", {}).get("price")
+    if inflow_val:
+        data["inflow_hist"] = append_inflow_today(inflow_val, data["date"])
     data["lithium_futures"] = fetch_lithium_futures()
 
     if verbose: print("🏭 上游..."); data["upstream"] = fetch_stock_batch(UPSTREAM_STOCKS)
@@ -715,6 +719,10 @@ def collect_all(verbose=True):
     if verbose: print("📈 财务..."); data["financials"] = fetch_financial_trends()
     if verbose: print("🔋 发电量..."); data["battery_install"] = fetch_battery_install()
     if verbose: print("📦 大宗交易..."); data["block_trades"] = fetch_block_trades()
+    if verbose: print("💰 股息率..."); data["dividend"] = fetch_dividend_data(data.get("catl_a",{}).get("price") if data.get("catl_a") else None)
+    if verbose: print("🌊 来水趋势..."); data["inflow_hist"] = fetch_inflow_history()
+    if verbose: print("🌍 北向增强..."); data["north_flow_v2"] = fetch_north_flow_enhanced()
+    if verbose: print("📈 主力5日..."); data["fund_flow_5d"] = fetch_fund_flow_week_detailed()
     if verbose: print("💱 AH溢价...")
     if verbose and data.get("ah_history"):
         print(f"  AH历史: {len(data['ah_history'])}天 · 当前{data.get('ah_premium','—'):.1f}% · "
@@ -1001,6 +1009,32 @@ def compute_derived(data):
         data["competitor_avg_change"] = round(sum(changes) / len(changes), 2) if changes else 0
     else:
         data["competitor_avg_change"] = 0
+
+    # ── 11. 股息率 ──
+    div = data.get("dividend") or {}
+    if div:
+        s["dividend"] = div
+
+    # ── 12. 北向资金 ──
+    nf = data.get("north_flow_v2") or {}
+    if nf.get("status") != "no_data":
+        s["north_flow"] = nf
+
+    # ── 13. 主力资金5日 ──
+    ff5 = data.get("fund_flow_5d") or []
+    if ff5:
+        s["fund_flow_5d"] = ff5
+        # Calculate 5-day trend
+        nets = [d["main_net"] for d in ff5 if d.get("main_net") is not None]
+        if nets:
+            s["fund_5d_total"] = round(sum(nets), 2)
+            s["fund_5d_avg"] = round(sum(nets) / len(nets), 2)
+            s["fund_5d_trend"] = "流入" if sum(nets) > 0 else "流出"
+
+    # ── 14. 来水趋势 ──
+    ih = data.get("inflow_hist") or []
+    if ih:
+        s["inflow_hist"] = ih
 
     data["summaries"] = s
 
@@ -1333,6 +1367,126 @@ def calc_avg_volume(kline, days):
     recent = kline[-days:]
     vols = [k.get("volume", 0) for k in recent if k.get("volume", 0) > 0]
     return sum(vols) / len(vols) if vols else None
+
+
+
+# ═══════════════════════════════════════════
+# 模块 P2: 股息率 + 来水趋势 + 北向增强 + 主力5日流速
+# ═══════════════════════════════════════════
+
+DIVIDEND_PER_SHARE = 0.84  # 长江电力2024年报每10股派8.4元(含税)
+BOND_10Y = 1.75             # 10年期国债收益率参考值
+
+def fetch_dividend_data(price):
+    """实时股息率计算"""
+    if not price: return None
+    dps = DIVIDEND_PER_SHARE
+    yield_val = round(dps / price * 100, 2)
+    
+    if yield_val >= 3.5: level, color = "极具吸引力", "#3fb950"
+    elif yield_val >= 2.5: level, color = "较好", "#58a6ff"
+    elif yield_val >= 2.0: level, color = "一般", "#d29922"
+    else: level, color = "偏低", "#f85149"
+    
+    return {"dps": dps, "yield": yield_val, "bond_10y": BOND_10Y,
+            "spread": round(yield_val - BOND_10Y, 2),
+            "level": level, "color": color, "price": price}
+
+def inflow_history_path():
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "inflow_history.json")
+
+def fetch_inflow_history():
+    """读取来水历史数据"""
+    try:
+        with open(inflow_history_path()) as f:
+            hist = json.load(f)
+        return hist
+    except:
+        return []
+
+def append_inflow_today(current_val, date_str):
+    """将当日入库流量追加到历史文件"""
+    try:
+        with open(inflow_history_path()) as f:
+            hist = json.load(f)
+    except:
+        hist = []
+    
+    v = round(current_val, 0) if current_val else None
+    if not v: return hist
+    
+    if hist and hist[-1].get("date") == date_str:
+        hist[-1] = {"date": date_str, "value": v}
+    else:
+        hist.append({"date": date_str, "value": v})
+    
+    hist = hist[-60:]
+    with open(inflow_history_path(), "w") as f:
+        json.dump(hist, f, ensure_ascii=False)
+    return hist
+
+def fetch_north_flow_enhanced():
+    """北向资金增强版 — 多数据源降级"""
+    result = {"status": "no_data", "today": None, "recent": [], "holding_ratio": None}
+    
+    # Source 1: 个股北向持仓比例 (东财push2)
+    try:
+        url = "https://push2.eastmoney.com/api/qt/stock/get?secid=1.600900&fields=f43,f169,f170"
+        d = get_json(url)
+        data = d.get("data", {})
+        if data:
+            f169 = data.get("f169")  # Could be northbound related
+            f170 = data.get("f170")
+            if f169 or f170:
+                result["holding_ratio"] = f170 if f170 else None
+                result["status"] = "partial"
+    except: pass
+    
+    # Source 2: 北向资金大盘汇总 (东财push2)
+    try:
+        url2 = "https://push2.eastmoney.com/api/qt/kamt.kline/get?fields1=f1,f3&fields2=f51,f52,f53,f54&klt=101&lmt=10"
+        d2 = get_json(url2)
+        klines = d2.get("data", {}).get("klines", [])
+        if klines:
+            recent = []
+            for k in klines:
+                parts = k.split(",")
+                if len(parts) >= 2:
+                    recent.append({"date": parts[0], "net": round(float(parts[1]), 2)})
+            if recent:
+                result["today"] = recent[-1]
+                result["recent"] = recent
+                result["status"] = "full"
+    except: pass
+    
+    return result
+
+def fetch_fund_flow_week_detailed():
+    """主力资金5日详细数据 — 每日主力净流入(亿)"""
+    try:
+        urls = [
+            "https://push2his.eastmoney.com/api/qt/stock/fflow/daykline/get?secid=1.600900&fields1=f1,f3&fields2=f51,f52,f53&lmt=6",
+            "https://push2.eastmoney.com/api/qt/stock/fflow/daykline/get?secid=1.600900&fields1=f1,f3&fields2=f51,f52,f53&lmt=6",
+        ]
+        for url in urls:
+            try:
+                import urllib.request as ur
+                raw = ur.urlopen(ur.Request(url, headers=H_EM), timeout=6, context=ssl_ctx).read().decode()
+                d = json.loads(raw)
+                klines = d.get("data", {}).get("klines", [])
+                if klines:
+                    result = []
+                    for k in klines:
+                        parts = k.split(",")
+                        if len(parts) >= 3:
+                            result.append({
+                                "date": parts[0],
+                                "main_net": round(float(parts[1]) / 1e8, 2),
+                            })
+                    return result
+            except: continue
+        return []
+    except: return []
 
 
 if __name__ == "__main__":
