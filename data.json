@@ -1,22 +1,22 @@
 {
   "date": "2026-07-09",
-  "datetime": "2026-07-09 08:00:35",
+  "datetime": "2026-07-09 11:40:34",
   "mode": "早报 ☀️",
   "catl_a": {
     "name": "长江电力",
-    "price": 27.83,
-    "prev_close": 27.41,
-    "open": 27.38,
-    "high": 28.15,
-    "low": 27.25,
-    "volume": 164844014,
-    "amount": 4582942182.0,
-    "change": 0.42,
-    "change_pct": 1.53
+    "price": 27.74,
+    "prev_close": 27.83,
+    "open": 27.7,
+    "high": 27.83,
+    "low": 27.53,
+    "volume": 60430431,
+    "amount": 1672747483.0,
+    "change": -0.09,
+    "change_pct": -0.32
   },
   "catl_h": null,
   "catl_pe": {
-    "pe_ttm": 18.87
+    "pe_ttm": 18.81
   },
   "catl_fund": null,
   "catl_kline": [
@@ -739,6 +739,14 @@
       "high": 28.15,
       "low": 27.25,
       "volume": 1648440.0
+    },
+    {
+      "date": "2026-07-09",
+      "open": 27.7,
+      "close": 27.74,
+      "high": 27.83,
+      "low": 27.53,
+      "volume": 604304.0
     }
   ],
   "catl_kline_long": [
@@ -6741,17 +6749,25 @@
       "high": 28.15,
       "low": 27.25,
       "volume": 1648440.0
+    },
+    {
+      "date": "2026-07-09",
+      "open": 27.7,
+      "close": 27.74,
+      "high": 27.83,
+      "low": 27.53,
+      "volume": 604304.0
     }
   ],
   "hk_kline": [],
   "market": {
     "上证指数": {
-      "price": 3970.8797,
-      "change_pct": -0.49
+      "price": 3952.4918,
+      "change_pct": -0.46
     },
     "沪深300": {
-      "price": 4755.5338,
-      "change_pct": -0.77
+      "price": 4758.3946,
+      "change_pct": 0.06
     }
   },
   "materials": {
@@ -6902,53 +6918,53 @@
     }
   ],
   "lithium_futures": {
-    "price": 165200.0,
-    "prev_settle": 158400.0,
-    "change_pct": 4.29,
+    "price": 159940.0,
+    "prev_settle": 151020.0,
+    "change_pct": 5.91,
     "name": "碳酸锂连续"
   },
   "upstream": {
     "中国电建": {
       "code": "sh601669",
-      "price": 4.73,
-      "change_pct": 0.0,
+      "price": 4.68,
+      "change_pct": -1.06,
       "periods": {
-        "5日": -0.21,
-        "15日": -8.51,
-        "30日": -10.42
+        "5日": -2.09,
+        "15日": -5.26,
+        "30日": -10.86
       },
       "trend_summary": "深度回调"
     },
     "东方电气": {
       "code": "sh600875",
-      "price": 27.71,
-      "change_pct": -2.43,
+      "price": 27.16,
+      "change_pct": -1.98,
       "periods": {
-        "5日": -0.72,
-        "15日": -12.61,
-        "30日": -23.13
+        "5日": -5.99,
+        "15日": -16.58,
+        "30日": -26.44
       },
-      "trend_summary": "深度回调"
+      "trend_summary": "深度回调，加速下跌"
     },
     "国电南瑞": {
       "code": "sh600406",
-      "price": 22.51,
-      "change_pct": -1.23,
+      "price": 21.49,
+      "change_pct": -4.53,
       "periods": {
-        "5日": -0.71,
-        "15日": -1.48,
-        "30日": -10.31
+        "5日": -6.12,
+        "15日": -4.86,
+        "30日": -12.74
       },
-      "trend_summary": "深度回调"
+      "trend_summary": "深度回调，加速下跌"
     },
     "特变电工": {
       "code": "sh600089",
-      "price": 20.05,
-      "change_pct": -2.67,
+      "price": 19.47,
+      "change_pct": -2.89,
       "periods": {
-        "5日": -6.61,
-        "15日": -13.13,
-        "30日": -21.98
+        "5日": -10.07,
+        "15日": -15.2,
+        "30日": -23.8
       },
       "trend_summary": "深度回调，加速下跌"
     }
@@ -6956,54 +6972,54 @@
   "competitors": {
     "华能水电": {
       "code": "sh600025",
-      "price": 9.49,
-      "change_pct": 2.59,
+      "price": 9.59,
+      "change_pct": 1.05,
       "periods": {
-        "5日": 3.94,
-        "15日": 2.76,
-        "30日": 0.8
+        "5日": 4.35,
+        "15日": 5.44,
+        "30日": 1.86
       },
       "trend_summary": "横盘震荡"
     },
     "国投电力": {
       "code": "sh600886",
-      "price": 13.46,
-      "change_pct": 0.07,
+      "price": 13.64,
+      "change_pct": 1.34,
       "periods": {
-        "5日": -0.66,
-        "15日": 1.05,
-        "30日": -2.32
+        "5日": 1.64,
+        "15日": 4.36,
+        "30日": -1.23
       },
-      "trend_summary": "横盘震荡，短期反转"
+      "trend_summary": "横盘震荡"
     },
     "川投能源": {
       "code": "sh600674",
-      "price": 14.47,
-      "change_pct": 0.49,
+      "price": 14.66,
+      "change_pct": 1.31,
       "periods": {
-        "5日": -0.14,
-        "15日": -1.09,
-        "30日": -3.79
+        "5日": 0.55,
+        "15日": 2.45,
+        "30日": -2.66
       },
       "trend_summary": "横盘震荡"
     }
   },
   "sectors": {
     "电力行业": {
-      "price": 2191.6825,
-      "change_pct": -1.85
+      "price": 2147.3889,
+      "change_pct": -2.02
     },
     "公用事业": {
-      "price": 4333.5785,
-      "change_pct": 0.25
+      "price": 4287.0091,
+      "change_pct": -1.07
     },
     "绿色电力": {
-      "price": 1263.3804,
-      "change_pct": -0.85
+      "price": 1267.7669,
+      "change_pct": 0.35
     },
     "水力发电": {
-      "price": 6027.5203,
-      "change_pct": 0.44
+      "price": 6039.1993,
+      "change_pct": 0.18
     }
   },
   "news": {
@@ -7236,62 +7252,62 @@
     "peers": {
       "长江电力": {
         "code": "sh600900",
-        "price": 27.83,
-        "pe": 18.87,
-        "pb": 2.99,
+        "price": 27.74,
+        "pe": 18.81,
+        "pb": 2.98,
         "roe": 15.83,
         "peg": 0.75,
-        "mcap": 6809.5,
+        "mcap": 6787.48,
         "score": "低估"
       },
       "华能水电": {
         "code": "sh600025",
-        "price": 9.49,
-        "pe": 20.71,
-        "pb": 2.63,
+        "price": 9.59,
+        "pe": 20.92,
+        "pb": 2.66,
         "roe": 10.03,
-        "peg": 0.83,
-        "mcap": 1768.09,
+        "peg": 0.84,
+        "mcap": 1786.72,
         "score": "合理"
       },
       "国投电力": {
         "code": "sh600886",
-        "price": 13.46,
-        "pe": 14.49,
-        "pb": 1.56,
+        "price": 13.64,
+        "pe": 14.69,
+        "pb": 1.58,
         "roe": 9.95,
-        "peg": 0.58,
-        "mcap": 1077.4,
+        "peg": 0.59,
+        "mcap": 1091.81,
         "score": "低估"
       },
       "川投能源": {
         "code": "sh600674",
-        "price": 14.47,
-        "pe": 14.92,
-        "pb": 1.52,
+        "price": 14.66,
+        "pe": 15.11,
+        "pb": 1.54,
         "roe": 10.19,
         "peg": 0.6,
-        "mcap": 705.36,
+        "mcap": 714.62,
         "score": "低估"
       },
       "桂冠电力": {
         "code": "sh600236",
-        "price": 9.51,
-        "pe": 20.85,
-        "pb": 4.36,
+        "price": 9.49,
+        "pe": 20.81,
+        "pb": 4.35,
         "roe": 16.61,
         "peg": 0.83,
-        "mcap": 749.61,
+        "mcap": 748.04,
         "score": "合理"
       },
       "中国核电": {
         "code": "sh601985",
-        "price": 8.9,
-        "pe": 22.24,
+        "price": 8.91,
+        "pe": 22.26,
         "pb": 1.53,
         "roe": 6.8,
         "peg": 0.89,
-        "mcap": 1830.55,
+        "mcap": 1832.61,
         "score": "合理"
       }
     },
@@ -7466,11 +7482,11 @@
     }
   ],
   "financials": {
-    "pe_ttm": 18.87,
-    "pb": 2.99,
+    "pe_ttm": 18.81,
+    "pb": 2.98,
     "roe": 15.83,
-    "mcap": 6809.5,
-    "price": 27.83,
+    "mcap": 6787.48,
+    "price": 27.74,
     "quarters": [
       {
         "period": "2024Q1",
@@ -7637,12 +7653,12 @@
   },
   "dividend": {
     "dps": 0.84,
-    "yield": 3.02,
+    "yield": 3.03,
     "bond_10y": 1.75,
-    "spread": 1.27,
+    "spread": 1.28,
     "level": "较好",
     "color": "#58a6ff",
-    "price": 27.83
+    "price": 27.74
   },
   "north_flow_v2": {
     "status": "no_data",
@@ -7656,54 +7672,54 @@
   "ah_mean30": null,
   "ah_7day": [],
   "ah_ranking": null,
-  "peg": 2.36,
+  "peg": 2.35,
   "peg_signal": {
     "text": "偏高区间 ⚠️",
     "color": "#f85149",
     "level": "sell"
   },
-  "upstream_avg_change": -1.58,
-  "competitor_avg_change": 1.05,
+  "upstream_avg_change": -2.62,
+  "competitor_avg_change": 1.23,
   "summaries": {
     "mas": {
-      "MA5": 27.29,
+      "MA5": 27.44,
       "MA20": 27.1,
-      "MA60": 27.06
+      "MA60": 27.08
     },
     "ma60_dist": {
-      "value": 27.06,
-      "dist_pct": 2.85,
-      "text": "距MA60 +2.85%",
+      "value": 27.08,
+      "dist_pct": 2.44,
+      "text": "距MA60 +2.44%",
       "near": true
     },
     "streak": {
       "days": 1,
       "pct": 0.0,
-      "direction": "涨",
-      "text": "连涨1日 累计+0.0%"
+      "direction": "跌",
+      "text": "连跌1日 累计-0.0%"
     },
-    "chg_5d": 3.27,
-    "chg_10d": 6.14,
-    "chg_20d": 0.51,
+    "chg_5d": 2.55,
+    "chg_10d": 4.09,
+    "chg_20d": -0.54,
     "volume_ratio": {
-      "ratio": 131.45,
-      "text": "量能131.5x均量"
+      "ratio": 55.2,
+      "text": "量能55.2x均量"
     },
     "vs_market": {
-      "text": "逆势上涨1.5% (大盘-0.49%)",
-      "type": "diverge_up",
-      "diff": 2.02
+      "text": "跑赢大盘 (-0.3% vs -0.46%)",
+      "type": "outperform",
+      "diff": 0.14
     },
     "ah": {
       "level": "unknown",
       "text": "—"
     },
     "peg": {
-      "value": 2.36,
+      "value": 2.35,
       "target_price": 11.8,
-      "distance_pct": -57.6,
+      "distance_pct": -57.46,
       "signal": "sell",
-      "text": "PEG=2.36 偏高 距买点差-57.6%"
+      "text": "PEG=2.35 偏高 距买点差-57.5%"
     },
     "target_prices": {
       "buy": 12.0,
@@ -7746,9 +7762,9 @@
       "_eps": 1.47
     },
     "pe": {
-      "value": 18.87,
+      "value": 18.81,
       "level": "偏低",
-      "text": "PE=18.9x 偏低"
+      "text": "PE=18.8x 偏低"
     },
     "fund": {
       "text": "数据暂缺",
@@ -7756,40 +7772,40 @@
       "five_day": 0
     },
     "lithium": {
-      "price": 165200.0,
-      "price_wan": 16.52,
-      "delta_wan": 9.02,
+      "price": 159940.0,
+      "price_wan": 15.99,
+      "delta_wan": 8.49,
       "impact": "成本压力",
-      "text": "三峡入库流量16.5万/吨 成本压力"
+      "text": "三峡入库流量16.0万/吨 成本压力"
     },
     "upstream_alerts": [],
     "amount": {
-      "value": 45.82942182,
-      "level": "正常",
-      "text": "成交额46亿 正常"
+      "value": 16.72747483,
+      "level": "缩量",
+      "text": "成交额17亿 缩量"
     },
     "industry": {
       "name": "水电",
       "source": "电力行业",
-      "change_pct": -1.85,
-      "text": "水电(电力行业) -1.9%"
+      "change_pct": -2.02,
+      "text": "水电(电力行业) -2.0%"
     },
     "cost": {
       "cost_price": 25,
-      "current": 27.83,
-      "change_pct": 11.32,
-      "text": "成本¥25 浮盈11.3%"
+      "current": 27.74,
+      "change_pct": 10.96,
+      "text": "成本¥25 浮盈11.0%"
     },
-    "core_summary": "PEG 2.36 偏高 · 三峡入库流量16.52万/吨 成本压力",
-    "vs_industry": "强于行业3.4%",
+    "core_summary": "PEG 2.35 偏高 · 三峡入库流量15.99万/吨 成本压力",
+    "vs_industry": "强于行业1.7%",
     "dividend": {
       "dps": 0.84,
-      "yield": 3.02,
+      "yield": 3.03,
       "bond_10y": 1.75,
-      "spread": 1.27,
+      "spread": 1.28,
       "level": "较好",
       "color": "#58a6ff",
-      "price": 27.83
+      "price": 27.74
     },
     "inflow_hist": [
       {
@@ -7913,13 +7929,6 @@
   "week_review": {
     "days": [
       {
-        "date": "2026-07-02",
-        "close": 26.95,
-        "change_pct": 1.16,
-        "fund_net": null,
-        "events": "—"
-      },
-      {
         "date": "2026-07-03",
         "close": 27.05,
         "change_pct": 0.37,
@@ -7945,17 +7954,24 @@
         "close": 27.83,
         "change_pct": 1.53,
         "fund_net": null,
-        "events": "强势上涨，盘中触及关键位"
+        "events": "强势上涨"
+      },
+      {
+        "date": "2026-07-09",
+        "close": 27.74,
+        "change_pct": -0.32,
+        "fund_net": null,
+        "events": "—"
       }
     ],
     "total": {
-      "close": 27.83,
-      "week_chg": 3.27,
+      "close": 27.74,
+      "week_chg": 2.55,
       "week_fund": 0
     },
-    "summary": "本周CJDL累计上涨3.3%，0天下跌。\n\n每日涨跌: +1.2% → +0.4% → +0.5% → +0.8% → +1.5%\n\n📊 宁德跑赢大盘（周+3.3% vs 上证-0.5%），独立走强。\n\n💰 主力资金本周基本平衡（东财数据暂缺，待恢复后更新）。\n\n📏 当前PE=18.9x，PEG=2.36，估值偏高，需注意风险。\n\n📐 MA60=¥27，当前价距MA60仅2.9%，已逼近核心支撑位——这是技术面的关键防线。\n\n⛏️ 三峡入库流量16.5万/吨 成本压力——原材料成本上行，短期压缩利润空间。\n\n💡 估值偏高+趋势偏弱，建议观望为主，耐心等待PEG回到1.0以下的买入区间。",
+    "summary": "本周CJDL累计上涨2.5%，1天下跌。\n\n每日涨跌: +0.4% → +0.5% → +0.8% → +1.5% → -0.3%\n\n📊 宁德跑赢大盘（周+2.5% vs 上证-0.5%），独立走强。\n\n💰 主力资金本周基本平衡（东财数据暂缺，待恢复后更新）。\n\n📏 当前PE=18.8x，PEG=2.35，估值偏高，需注意风险。\n\n📐 MA60=¥27，当前价距MA60仅2.4%，已逼近核心支撑位——这是技术面的关键防线。\n\n⛏️ 三峡入库流量16.0万/吨 成本压力——原材料成本上行，短期压缩利润空间。\n\n💡 估值偏高+趋势偏弱，建议观望为主，耐心等待PEG回到1.0以下的买入区间。",
     "trend_desc": "持续走强，多头掌控",
     "fund_desc": "主力资金基本平衡"
   },
-  "pushed_at": "2026-07-09 08:00:44"
+  "pushed_at": "2026-07-09 11:40:43"
 }
