@@ -1,7 +1,7 @@
 {
-  "date": "2026-07-28",
-  "datetime": "2026-07-28 18:00:33",
-  "mode": "晚报 🌙",
+  "date": "2026-07-29",
+  "datetime": "2026-07-29 00:30:14",
+  "mode": "早报 ☀️",
   "catl_a": {
     "name": "长江电力",
     "price": 29.07,
@@ -18,16 +18,18 @@
   "catl_pe": {
     "pe_ttm": 19.71
   },
-  "catl_fund": null,
+  "catl_fund": {
+    "main_net": 1,
+    "huge_net": 0,
+    "big_net": 0,
+    "small_net": 6.4427781703,
+    "main_pct": 0,
+    "today_in": 0,
+    "three_day": 0,
+    "five_day": 0,
+    "ten_day": 0
+  },
   "catl_kline": [
-    {
-      "date": "2026-03-17",
-      "open": 26.53,
-      "close": 26.7,
-      "high": 26.78,
-      "low": 26.49,
-      "volume": 850289.0
-    },
     {
       "date": "2026-03-18",
       "open": 26.69,
@@ -750,14 +752,6 @@
     }
   ],
   "catl_kline_long": [
-    {
-      "date": "2023-06-21",
-      "open": 18.616,
-      "close": 18.516,
-      "high": 18.816,
-      "low": 18.506,
-      "volume": 405526.0
-    },
     {
       "date": "2023-06-26",
       "open": 18.516,
@@ -6967,6 +6961,10 @@
     {
       "date": "2026-07-28",
       "value": 25000
+    },
+    {
+      "date": "2026-07-29",
+      "value": 25000
     }
   ],
   "lithium_futures": {
@@ -7172,18 +7170,18 @@
         "content": "证券日报网讯 7月28日，广东建工在互动平台回答投资者提问时表示，公司投资建设的粤水电巴楚县5MW光伏制储加氢一体化（试验示范）项目（制储氢600Nm³/h）已投产运营。未来，公司将持续关注相关市场情况，积极寻找优质资源，拓展绿电制氢业务。"
       },
       {
+        "title": "大西洋：公司长期重点关注并服务于核电、水电、风电等国家重大装备制造和重点工程建设项目",
+        "date": "2026-07-28",
+        "source": "证券日报",
+        "url": "http://finance.eastmoney.com/a/202607283823717436.html",
+        "content": "证券日报网7月28日讯 ，大西洋在接受调研时表示，公司长期重点关注并服务于核电、水电、风电等国家重大装备制造和重点工程建设项目，经过多年的技术创新、技术积累和市场开拓，公司产品已经应用到核电、水电、风电领域。"
+      },
+      {
         "title": "通用电气旗下能源业务公司GE Vernova将更换迪诺威格水电站两台315兆瓦机组",
         "date": "2026-07-28",
         "source": "财联社",
         "url": "http://finance.eastmoney.com/a/202607283823502071.html",
         "content": "通用电气旗下能源业务公司GE Vernova将更换迪诺威格水电站两台315兆瓦机组。"
-      },
-      {
-        "title": "湖北能源：截至2026年6月末公司水电累计完成发电量85.51亿千瓦时",
-        "date": "2026-07-26",
-        "source": "证券日报",
-        "url": "http://finance.eastmoney.com/a/202607263821253450.html",
-        "content": "证券日报网7月26日讯 ，湖北能源在接受调研时表示，2026年上半年清江流域来水较同期显著偏丰，带动公司水电发电量大幅增长。截至2026年6月末，公司水电累计完成发电量85.51亿千瓦时，同比增长87.23%。"
       }
     ],
     "来水数据": [
@@ -7202,6 +7200,13 @@
         "content": "莱茵河水位在关键水位监测点降至2018年以来最低水平。"
       },
       {
+        "title": "多瑙河布达佩斯段水位创历史新低",
+        "date": "2026-07-28",
+        "source": "新华社",
+        "url": "http://global.eastmoney.com/a/202607283823851028.html",
+        "content": "新华财经布达佩斯7月28日电（记者陈浩）匈牙利水资源管理总局28日发布的数据显示，多瑙河布达佩斯段水位已降至31厘米，创下该河段水位历史新低。由于水位下降，多瑙河沿线多地相继发现了二战时期的弹药和沉船等。"
+      },
+      {
         "title": "烽火通信旗下长江计算中标人保集团核心设备采购项目",
         "date": "2026-07-28",
         "source": "第一财经",
@@ -7214,13 +7219,6 @@
         "source": "界面新闻",
         "url": "http://finance.eastmoney.com/a/202607263821272264.html",
         "content": "7月26日，长江防总秘书长、长江委副主任王威主持滚动会商，进一步落实水利部专题会商要求，跟踪研判台风“红霞”发展态势、移动路径和对长江流域的影响，针对性安排部署台风暴雨洪水防御工作。"
-      },
-      {
-        "title": "英国威尔士地区多条河流水位降至“异常低位”",
-        "date": "2026-07-23",
-        "source": "新华社",
-        "url": "http://finance.eastmoney.com/a/202607233819063947.html",
-        "content": "持续少雨，加之热浪接连来袭，河流、水库和地下水位下降，受此影响，威尔士地区克卢伊德河、阿尔文河、克利韦多格河、德菲河、康维河和瓦伊河等河流水位处于“异常低位”。相关部门正从水库放水，以维持部分河流流量。"
       }
     ],
     "电价政策": [
@@ -7283,23 +7281,25 @@
         "content": "数据来源：Choice 　　剔除金融、石油两大行业，2025年A股共有13家公司分红超过百亿元，中国移动居首，贵州茅台排名第二，分红650.33亿元；中国神华、宁德时代、美的集团排名第三至第五，分红金额分别为418.11亿元、363.44亿"
       },
       {
-        "title": "上市券商开启中期分红预热",
+        "title": "公募基金年内分红近千亿元，易方达、华泰柏瑞分红超百亿",
         "date": "2026-07-28",
-        "source": "财联社",
-        "url": "http://finance.eastmoney.com/a/202607283822534152.html",
-        "content": "临近上市券商2026年半年度业绩披露季，多位上市券商董事长发声，提议推出中期分红方案。与此同时，2025年年度分红进入派现实施窗口期，7月以来已有18家上市券商发布权益分派实施公告。"
+        "source": "新华财经",
+        "url": "http://fund.eastmoney.com/a/202607283823800582.html",
+        "content": "公募排排网数据显示，年内1561只债券型基金分红2237次，分红金额达559.52亿元，占到分红总金额的57.21%。但较去年同期相比，债券型基金分红金额同比下降44.33%。 　　权益基金分红同比回暖。"
       },
       {
-        "title": "齐峰新材：公司持续实施现金分红回馈股东",
+        "title": "仲景食品：上市以来已连续6年实施现金分红，累计分红5.92亿元",
         "date": "2026-07-28",
         "source": "证券日报",
-        "url": "http://finance.eastmoney.com/a/202607283823529531.html",
-        "content": "证券日报网讯 7月28日，齐峰新材在互动平台回答投资者提问时表示，公司长期坚持稳健经营，夯实主业盈利能力，巩固行业龙头优势，持续实施现金分红回馈股东，以扎实业绩筑牢市值基础。"
+        "url": "http://finance.eastmoney.com/a/202607283823763056.html",
+        "content": "同时坚持稳健的分红政策，上市以来已连续6年实施现金分红，累计分红5.92亿元。调味品行业需要时间沉淀品牌与渠道，仲景将坚持稳健务实的发展路径，以持续的价值创造回馈投资者信任。"
       }
     ]
   },
   "north_flow": null,
-  "nev_sector": null,
+  "nev_sector": {
+    "total_stocks": 215
+  },
   "valuation": {
     "peers": {
       "长江电力": {
@@ -7407,132 +7407,35 @@
       "dividend_yield": 0.38
     }
   },
-  "week_flow": [],
-  "analyst_consensus": {
-    "periods": [
-      {
-        "window": "1月内",
-        "rating": "买入",
-        "rating_num": 5,
-        "org_num": 2,
-        "buy_num": 2,
-        "add_num": null,
-        "neutral_num": null,
-        "reduce_num": null,
-        "sale_num": null
-      },
-      {
-        "window": "2月内",
-        "rating": "买入",
-        "rating_num": 5,
-        "org_num": 4,
-        "buy_num": 4,
-        "add_num": null,
-        "neutral_num": null,
-        "reduce_num": null,
-        "sale_num": null
-      },
-      {
-        "window": "3月内",
-        "rating": "买入",
-        "rating_num": 4.8125,
-        "org_num": 16,
-        "buy_num": 13,
-        "add_num": 3,
-        "neutral_num": null,
-        "reduce_num": null,
-        "sale_num": null
-      },
-      {
-        "window": "6月内",
-        "rating": "买入",
-        "rating_num": 4.823529411765,
-        "org_num": 17,
-        "buy_num": 14,
-        "add_num": 3,
-        "neutral_num": null,
-        "reduce_num": null,
-        "sale_num": null
-      },
-      {
-        "window": "1年内",
-        "rating": "买入",
-        "rating_num": 4.869565217391,
-        "org_num": 23,
-        "buy_num": 20,
-        "add_num": 3,
-        "neutral_num": null,
-        "reduce_num": null,
-        "sale_num": null
-      }
-    ],
-    "latest": {
-      "window": "1月内",
-      "rating": "买入",
-      "rating_num": 5,
-      "org_num": 2,
-      "buy_num": 2,
-      "add_num": null,
-      "neutral_num": null,
-      "reduce_num": null,
-      "sale_num": null
-    }
-  },
-  "analyst_targets": {
-    "eps_curr": 1.410107167464,
-    "eps_next": 1.461176470588,
-    "eps_far": 1.514117647059,
-    "target_low": 29.0,
-    "target_mid": 37.0,
-    "target_high": 44.0,
-    "implied_pe": 19.9,
-    "avg": 29.0,
-    "high": 44.0,
-    "low": 29.0,
-    "count": 13
-  },
-  "analyst_eps": [
+  "week_flow": [
     {
-      "year": 2025,
-      "year_mark": "A",
-      "eps": 1.410107167464,
-      "pe": 20.61545439,
-      "roe": 15.9,
-      "net_profit": 34502809176,
-      "revenue": 86241940222,
-      "org_num": null
+      "date": "2026-07-21",
+      "main_net": -1.19
     },
     {
-      "year": 2026,
-      "year_mark": "E",
-      "eps": 1.461176470588,
-      "pe": 19.888276020364,
-      "roe": 15.152352941177,
-      "net_profit": 35764341176,
-      "revenue": 87042074705,
-      "org_num": null
+      "date": "2026-07-22",
+      "main_net": 3.37
     },
     {
-      "year": 2027,
-      "year_mark": "E",
-      "eps": 1.514117647059,
-      "pe": 19.207216557921,
-      "roe": 14.782352941177,
-      "net_profit": 37032491764,
-      "revenue": 88230427058,
-      "org_num": null
+      "date": "2026-07-23",
+      "main_net": 0.52
     },
     {
-      "year": 2028,
-      "year_mark": "E",
-      "eps": 1.550666666667,
-      "pe": 18.739995304469,
-      "roe": 14.314666666667,
-      "net_profit": 37955777333,
-      "revenue": 88921007333,
-      "org_num": null
+      "date": "2026-07-24",
+      "main_net": 0.81
+    },
+    {
+      "date": "2026-07-27",
+      "main_net": -1.17
+    },
+    {
+      "date": "2026-07-28",
+      "main_net": 3.48
     }
   ],
+  "analyst_consensus": null,
+  "analyst_targets": null,
+  "analyst_eps": null,
   "financials": {
     "pe_ttm": 19.71,
     "pb": 3.41,
@@ -7713,12 +7616,37 @@
     "price": 29.07
   },
   "north_flow_v2": {
-    "status": "no_data",
+    "status": "partial",
     "today": null,
     "recent": [],
-    "holding_ratio": null
+    "holding_ratio": 254
   },
-  "fund_flow_5d": [],
+  "fund_flow_5d": [
+    {
+      "date": "2026-07-21",
+      "main_net": -1.19
+    },
+    {
+      "date": "2026-07-22",
+      "main_net": 3.37
+    },
+    {
+      "date": "2026-07-23",
+      "main_net": 0.52
+    },
+    {
+      "date": "2026-07-24",
+      "main_net": 0.81
+    },
+    {
+      "date": "2026-07-27",
+      "main_net": -1.17
+    },
+    {
+      "date": "2026-07-28",
+      "main_net": 3.48
+    }
+  ],
   "ah_premium": null,
   "ah_history": [],
   "ah_mean30": null,
@@ -7819,9 +7747,9 @@
       "text": "PE=19.7x 偏低"
     },
     "fund": {
-      "text": "数据暂缺",
-      "main_net": 0,
-      "five_day": 0
+      "text": "资金平稳",
+      "main_net": 0.0001,
+      "five_day": 0.0
     },
     "lithium": {
       "price": 147680.0,
@@ -7859,6 +7787,41 @@
       "color": "#58a6ff",
       "price": 29.07
     },
+    "north_flow": {
+      "status": "partial",
+      "today": null,
+      "recent": [],
+      "holding_ratio": 254
+    },
+    "fund_flow_5d": [
+      {
+        "date": "2026-07-21",
+        "main_net": -1.19
+      },
+      {
+        "date": "2026-07-22",
+        "main_net": 3.37
+      },
+      {
+        "date": "2026-07-23",
+        "main_net": 0.52
+      },
+      {
+        "date": "2026-07-24",
+        "main_net": 0.81
+      },
+      {
+        "date": "2026-07-27",
+        "main_net": -1.17
+      },
+      {
+        "date": "2026-07-28",
+        "main_net": 3.48
+      }
+    ],
+    "fund_5d_total": 5.82,
+    "fund_5d_avg": 0.97,
+    "fund_5d_trend": "流入",
     "inflow_hist": [
       {
         "date": "2026-06-04",
@@ -8027,6 +7990,10 @@
       {
         "date": "2026-07-28",
         "value": 25000
+      },
+      {
+        "date": "2026-07-29",
+        "value": 25000
       }
     ]
   },
@@ -8036,46 +8003,46 @@
         "date": "2026-07-22",
         "close": 29.09,
         "change_pct": 1.25,
-        "fund_net": null,
+        "fund_net": 3.37,
         "events": "—"
       },
       {
         "date": "2026-07-23",
         "close": 28.94,
         "change_pct": -0.52,
-        "fund_net": null,
+        "fund_net": 0.52,
         "events": "—"
       },
       {
         "date": "2026-07-24",
         "close": 28.9,
         "change_pct": -0.14,
-        "fund_net": null,
+        "fund_net": 0.81,
         "events": "窄幅横盘"
       },
       {
         "date": "2026-07-27",
         "close": 28.35,
         "change_pct": -1.9,
-        "fund_net": null,
+        "fund_net": -1.17,
         "events": "放量下跌"
       },
       {
         "date": "2026-07-28",
         "close": 29.07,
         "change_pct": 2.54,
-        "fund_net": null,
+        "fund_net": 3.48,
         "events": "强势上涨，盘中触及关键位"
       }
     ],
     "total": {
       "close": 29.07,
       "week_chg": -0.07,
-      "week_fund": 0
+      "week_fund": 7.01
     },
-    "summary": "本周CJDL累计下跌0.1%，3天下跌。\n\n每日涨跌: +1.2% → -0.5% → -0.1% → -1.9% → +2.5%\n\n📊 宁德跑赢大盘（周-0.1% vs 上证-1.2%），独立走强。\n\n💰 主力资金本周基本平衡（东财数据暂缺，待恢复后更新）。\n\n📏 当前PE=19.7x，PEG=2.46，估值偏高，需注意风险。\n\n📐 MA60=¥27，距MA60还有8.4%距离，下方有支撑。\n\n⛏️ 三峡入库流量14.8万/吨 成本压力——原材料成本上行，短期压缩利润空间。\n\n💡 估值偏高+趋势偏弱，建议观望为主，耐心等待PEG回到1.0以下的买入区间。",
+    "summary": "本周CJDL累计下跌0.1%，3天下跌。\n\n每日涨跌: +1.2% → -0.5% → -0.1% → -1.9% → +2.5%\n\n📊 宁德跑赢大盘（周-0.1% vs 上证-1.2%），独立走强。\n\n💰 主力资金净流入7.0亿元，机构在吸筹。\n\n📏 当前PE=19.7x，PEG=2.46，估值偏高，需注意风险。\n\n📐 MA60=¥27，距MA60还有8.4%距离，下方有支撑。\n\n⛏️ 三峡入库流量14.8万/吨 成本压力——原材料成本上行，短期压缩利润空间。\n\n💡 估值偏高+趋势偏弱，建议观望为主，耐心等待PEG回到1.0以下的买入区间。",
     "trend_desc": "偏弱震荡，卖压占优",
-    "fund_desc": "主力资金基本平衡"
+    "fund_desc": "主力资金偏多，全周净流入7.0亿"
   },
-  "pushed_at": "2026-07-28 18:00:43"
+  "pushed_at": "2026-07-29 00:30:25"
 }
