@@ -1,6 +1,6 @@
 {
   "date": "2026-07-29",
-  "datetime": "2026-07-29 00:30:14",
+  "datetime": "2026-07-29 08:01:34",
   "mode": "早报 ☀️",
   "catl_a": {
     "name": "长江电力",
@@ -7068,8 +7068,8 @@
       "change_pct": -1.99
     },
     "水力发电": {
-      "price": 5973.9033,
-      "change_pct": -1.25
+      "price": 5974.4307,
+      "change_pct": -1.24
     }
   },
   "news": {
@@ -7433,9 +7433,131 @@
       "main_net": 3.48
     }
   ],
-  "analyst_consensus": null,
-  "analyst_targets": null,
-  "analyst_eps": null,
+  "analyst_consensus": {
+    "periods": [
+      {
+        "window": "1月内",
+        "rating": "买入",
+        "rating_num": 5,
+        "org_num": 2,
+        "buy_num": 2,
+        "add_num": null,
+        "neutral_num": null,
+        "reduce_num": null,
+        "sale_num": null
+      },
+      {
+        "window": "2月内",
+        "rating": "买入",
+        "rating_num": 5,
+        "org_num": 4,
+        "buy_num": 4,
+        "add_num": null,
+        "neutral_num": null,
+        "reduce_num": null,
+        "sale_num": null
+      },
+      {
+        "window": "3月内",
+        "rating": "买入",
+        "rating_num": 4.8125,
+        "org_num": 16,
+        "buy_num": 13,
+        "add_num": 3,
+        "neutral_num": null,
+        "reduce_num": null,
+        "sale_num": null
+      },
+      {
+        "window": "6月内",
+        "rating": "买入",
+        "rating_num": 4.823529411765,
+        "org_num": 17,
+        "buy_num": 14,
+        "add_num": 3,
+        "neutral_num": null,
+        "reduce_num": null,
+        "sale_num": null
+      },
+      {
+        "window": "1年内",
+        "rating": "买入",
+        "rating_num": 4.869565217391,
+        "org_num": 23,
+        "buy_num": 20,
+        "add_num": 3,
+        "neutral_num": null,
+        "reduce_num": null,
+        "sale_num": null
+      }
+    ],
+    "latest": {
+      "window": "1月内",
+      "rating": "买入",
+      "rating_num": 5,
+      "org_num": 2,
+      "buy_num": 2,
+      "add_num": null,
+      "neutral_num": null,
+      "reduce_num": null,
+      "sale_num": null
+    }
+  },
+  "analyst_targets": {
+    "eps_curr": 1.410107167464,
+    "eps_next": 1.461176470588,
+    "eps_far": 1.514117647059,
+    "target_low": 29.0,
+    "target_mid": 37.0,
+    "target_high": 44.0,
+    "implied_pe": 19.9,
+    "avg": 29.0,
+    "high": 44.0,
+    "low": 29.0,
+    "count": 13
+  },
+  "analyst_eps": [
+    {
+      "year": 2025,
+      "year_mark": "A",
+      "eps": 1.410107167464,
+      "pe": 20.61545439,
+      "roe": 15.9,
+      "net_profit": 34502809176,
+      "revenue": 86241940222,
+      "org_num": null
+    },
+    {
+      "year": 2026,
+      "year_mark": "E",
+      "eps": 1.461176470588,
+      "pe": 19.888276020364,
+      "roe": 15.152352941177,
+      "net_profit": 35764341176,
+      "revenue": 87042074705,
+      "org_num": null
+    },
+    {
+      "year": 2027,
+      "year_mark": "E",
+      "eps": 1.514117647059,
+      "pe": 19.207216557921,
+      "roe": 14.782352941177,
+      "net_profit": 37032491764,
+      "revenue": 88230427058,
+      "org_num": null
+    },
+    {
+      "year": 2028,
+      "year_mark": "E",
+      "eps": 1.550666666667,
+      "pe": 18.739995304469,
+      "roe": 14.314666666667,
+      "net_profit": 37955777333,
+      "revenue": 88921007333,
+      "org_num": null
+    }
+  ],
   "financials": {
     "pe_ttm": 19.71,
     "pb": 3.41,
@@ -8044,5 +8166,5 @@
     "trend_desc": "偏弱震荡，卖压占优",
     "fund_desc": "主力资金偏多，全周净流入7.0亿"
   },
-  "pushed_at": "2026-07-29 00:30:25"
+  "pushed_at": "2026-07-29 08:01:42"
 }
