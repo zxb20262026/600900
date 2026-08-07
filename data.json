@@ -1,7 +1,7 @@
 {
-  "date": "2026-08-06",
-  "datetime": "2026-08-06 18:01:17",
-  "mode": "晚报 🌙",
+  "date": "2026-08-07",
+  "datetime": "2026-08-07 08:00:58",
+  "mode": "早报 ☀️",
   "catl_a": {
     "name": "长江电力",
     "price": 27.75,
@@ -20,14 +20,6 @@
   },
   "catl_fund": null,
   "catl_kline": [
-    {
-      "date": "2026-03-26",
-      "open": 26.4,
-      "close": 26.52,
-      "high": 26.66,
-      "low": 26.31,
-      "volume": 845014.0
-    },
     {
       "date": "2026-03-27",
       "open": 26.49,
@@ -750,14 +742,6 @@
     }
   ],
   "catl_kline_long": [
-    {
-      "date": "2023-07-04",
-      "open": 18.536,
-      "close": 18.466,
-      "high": 18.636,
-      "low": 18.406,
-      "volume": 345040.0
-    },
     {
       "date": "2023-07-05",
       "open": 18.496,
@@ -6995,6 +6979,10 @@
     {
       "date": "2026-08-06",
       "value": 25000
+    },
+    {
+      "date": "2026-08-07",
+      "value": 25000
     }
   ],
   "lithium_futures": {
@@ -7237,18 +7225,18 @@
         "content": "莱茵河水位下降渔船残骸和“饥饿石”显露 　　在德国诺伊斯市，一艘20世纪90年代使用的渔船残骸露出水面。这艘沉船曾在2022年因莱茵河水位下降而重见天日，如今再次现身，也成为莱茵河持续干旱、水位偏低的一个直观标志。"
       },
       {
+        "title": "从“保卫生”到“重安全” 化妆品新国标全面提升行业水位",
+        "date": "2026-08-07",
+        "source": "南方都市报",
+        "url": "http://finance.eastmoney.com/a/202608073834225480.html",
+        "content": "8月6日，由国家药监局组织起草的首个化妆品强制性国家标准《化妆品安全通用要求》发布，并将于2028年1月1日起正式实施，《化妆品卫生标准》同步废止。 　　现行的《化妆品卫生标准》诞生于1987年，彼时，全国化妆品生产企业不足百家，市场规模有"
+      },
+      {
         "title": "极端干旱冲击欧洲经济：多瑙河和莱茵河水位暴跌 海军被迫炸河",
         "date": "2026-08-05",
         "source": "财联社",
         "url": "http://finance.eastmoney.com/a/202608053832684430.html",
         "content": "苏黎世联邦理工学院汇总的官方数据显示，德国境内的考布（Kaub）河段作为船只前往德国南部和瑞士的关键航道，其水位在周一和周二降至24厘米，创下了1880年有记录以来的最低值，且预计本周末水位还会进一步下降。 　　这远低于考布河段78厘米的正"
-      },
-      {
-        "title": "持续干旱致河流水位下降 荷兰多条渡轮航线停运",
-        "date": "2026-08-03",
-        "source": "财联社",
-        "url": "http://global.eastmoney.com/a/202608033829878071.html",
-        "content": "他说，以往渡轮停运多因水位过高，而此次因水位过低导致无法通航，在当地尚属首次。目前，停运将持续多久尚不明确。受持续低水位影响，荷兰其他地区也采取了禁止渡轮停靠、关闭船闸等临时措施。"
       }
     ],
     "电价政策": [
@@ -7436,9 +7424,131 @@
     }
   },
   "week_flow": [],
-  "analyst_consensus": null,
-  "analyst_targets": null,
-  "analyst_eps": null,
+  "analyst_consensus": {
+    "periods": [
+      {
+        "window": "1月内",
+        "rating": "买入",
+        "rating_num": 5,
+        "org_num": 1,
+        "buy_num": 1,
+        "add_num": null,
+        "neutral_num": null,
+        "reduce_num": null,
+        "sale_num": null
+      },
+      {
+        "window": "2月内",
+        "rating": "买入",
+        "rating_num": 5,
+        "org_num": 3,
+        "buy_num": 3,
+        "add_num": null,
+        "neutral_num": null,
+        "reduce_num": null,
+        "sale_num": null
+      },
+      {
+        "window": "3月内",
+        "rating": "买入",
+        "rating_num": 4.857142857143,
+        "org_num": 7,
+        "buy_num": 6,
+        "add_num": 1,
+        "neutral_num": null,
+        "reduce_num": null,
+        "sale_num": null
+      },
+      {
+        "window": "6月内",
+        "rating": "买入",
+        "rating_num": 4.823529411765,
+        "org_num": 17,
+        "buy_num": 14,
+        "add_num": 3,
+        "neutral_num": null,
+        "reduce_num": null,
+        "sale_num": null
+      },
+      {
+        "window": "1年内",
+        "rating": "买入",
+        "rating_num": 4.863636363636,
+        "org_num": 22,
+        "buy_num": 19,
+        "add_num": 3,
+        "neutral_num": null,
+        "reduce_num": null,
+        "sale_num": null
+      }
+    ],
+    "latest": {
+      "window": "1月内",
+      "rating": "买入",
+      "rating_num": 5,
+      "org_num": 1,
+      "buy_num": 1,
+      "add_num": null,
+      "neutral_num": null,
+      "reduce_num": null,
+      "sale_num": null
+    }
+  },
+  "analyst_targets": {
+    "eps_curr": 1.410107167464,
+    "eps_next": 1.461176470588,
+    "eps_far": 1.514117647059,
+    "target_low": 29.0,
+    "target_mid": 37.0,
+    "target_high": 44.0,
+    "implied_pe": 19.0,
+    "avg": 28.0,
+    "high": 44.0,
+    "low": 29.0,
+    "count": 13
+  },
+  "analyst_eps": [
+    {
+      "year": 2025,
+      "year_mark": "A",
+      "eps": 1.410107167464,
+      "pe": 19.67935533,
+      "roe": 15.9,
+      "net_profit": 34502809176,
+      "revenue": 86241940222,
+      "org_num": null
+    },
+    {
+      "year": 2026,
+      "year_mark": "E",
+      "eps": 1.461176470588,
+      "pe": 18.985196407468,
+      "roe": 15.152352941177,
+      "net_profit": 35764341176,
+      "revenue": 87042074705,
+      "org_num": null
+    },
+    {
+      "year": 2027,
+      "year_mark": "E",
+      "eps": 1.514117647059,
+      "pe": 18.335062245693,
+      "roe": 14.782352941177,
+      "net_profit": 37032491764,
+      "revenue": 88230427058,
+      "org_num": null
+    },
+    {
+      "year": 2028,
+      "year_mark": "E",
+      "eps": 1.550666666667,
+      "pe": 17.889056405194,
+      "roe": 14.314666666667,
+      "net_profit": 37955777333,
+      "revenue": 88921007333,
+      "org_num": null
+    }
+  ],
   "financials": {
     "pe_ttm": 18.82,
     "pb": 3.26,
@@ -7961,6 +8071,10 @@
       {
         "date": "2026-08-06",
         "value": 25000
+      },
+      {
+        "date": "2026-08-07",
+        "value": 25000
       }
     ]
   },
@@ -8011,5 +8125,5 @@
     "trend_desc": "跌多涨少，但跌幅逐日收窄，抛压接近衰竭",
     "fund_desc": "主力资金基本平衡"
   },
-  "pushed_at": "2026-08-06 18:01:27"
+  "pushed_at": "2026-08-07 08:01:07"
 }
